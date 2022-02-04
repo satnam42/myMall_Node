@@ -244,10 +244,10 @@ module.exports = [{
     }
 },
 {
-    url: "/currentUser/{id}",
+    url: "/getUserById/{id}",
     get: {
-        summary: "currentUser",
-        description: "currentUser",
+        summary: "getUserById",
+        description: "getUserById",
         parameters: [
             // {
             //     in: "header",

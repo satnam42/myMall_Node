@@ -66,9 +66,9 @@ const configure = (app, logger) => {
     );
 
     app.get(
-        "/api/users/currentUser/:id",
+        "/api/users/getUserById/:id",
         permit.context.builder,
-        api.users.currentUser
+        api.users.getUserById
     );
 
     app.get(
