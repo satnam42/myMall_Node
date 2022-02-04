@@ -30,11 +30,11 @@ const init = async () => {
   await require("./settings/database").configure(logger);
   await require("./settings/express").configure(app, logger);
   await require("./settings/routes").configure(app, logger);
-  require("./socket/socketEvents").sockets(server, logger);
+  // require("./socket/socketEvents").sockets(server, logger);
 
-  app.get('/chat', function (req, res) {
-    res.sendFile(__dirname + '/templates/index.html');
-  });
+  // app.get('/chat', function (req, res) {
+  //   res.sendFile(__dirname + '/templates/index.html');
+  // });
   boot();
 
 };
