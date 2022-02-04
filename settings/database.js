@@ -1,13 +1,14 @@
-"use strict";
 
+"use strict";
 const dbConfig = require("config").get("db");
 const mongoose = require("mongoose");
 
 const configure = async logger => {
   const log = logger.start(`settings:database:configure`);
   try {
-    await mongoose.connect(dbConfig.url + "/" + dbConfig.database, {
+    await mongoose.connect(dbConfig.url + "/" + dbConfig.database + '?authSource=admin', {
       useNewUrlParser: true,
+      useUnifiedTopology: true
     });
     if (process.env.NODE_ENV !== 'prod') {
       mongoose.set('debug', true)
