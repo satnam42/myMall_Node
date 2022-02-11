@@ -101,6 +101,32 @@ const configure = (app, logger) => {
         api.users.uploadProfileImage
     );
     log.end();
+
+
+    app.put(
+        "/api/store/update/:id",
+        permit.context.validateToken,
+        validator.store.update,
+        api.store.update
+    );
+
+    app.get(
+        "/api/store/getStoreById/:id",
+        permit.context.builder,
+        api.store.getStoreById
+    );
+
+    app.get(
+        "/api/store/search",
+        permit.context.validateToken,
+        api.store.search
+    );
+    app.post("/api/store/create",
+        permit.context.builder,
+        validator.store.create,
+        api.store.create
+    );
+
 };
 
 exports.configure = configure;
