@@ -63,37 +63,51 @@ module.exports = [{
         }
     }
 },
-
-// {
-//     url: "/profileImageUpload/{id}",
-//     put: {
-//         summary: "upload Profile Pic ",
-//         description: "upload Profile Pic ",
-//         parameters: [{
-//             in: "formData",
-//             name: "image",
-//             type: "file",
-//             description: "The file to upload.",
-//             required: true,
-//         },
-//         {
-//             in: "path",
-//             type: "string",
-//             name: "id",
-//             description: "store id",
-//             required: true
-//         }
-//         ],
-//         responses: {
-//             default: {
-//                 description: "Unexpected error",
-//                 schema: {
-//                     $ref: "#/definitions/Error"
-//                 }
-//             }
-//         }
-//     }
-// },
+{
+    url: "/imageUpload/{storeId}/{type}",
+    put: {
+        summary: "upload images",
+        description: "upload images",
+        parameters: [
+            // {
+            //     in: "header",
+            //     name: "x-access-token",
+            //     description: "token to access api",
+            //     required: true,
+            //     type: "string"
+            // },
+            {
+                in: "formData",
+                name: "image",
+                type: "file",
+                description: "The file to upload.",
+                required: true,
+            },
+            {
+                in: "path",
+                type: "string",
+                name: "storeId",
+                description: "store id",
+                required: true
+            },
+            {
+                in: "path",
+                type: "string",
+                name: "type",
+                description: "type is logo or banner or gallery",
+                required: true
+            }
+        ],
+        responses: {
+            default: {
+                description: "Unexpected error",
+                schema: {
+                    $ref: "#/definitions/Error"
+                }
+            }
+        }
+    }
+},
 {
     url: "/getStoreById/{id}",
     get: {

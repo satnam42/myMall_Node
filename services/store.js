@@ -89,36 +89,63 @@ const search = async (name, context) => {
     return stores
 };
 
+const imageUpload = async (id, type, files, context) => {
+    const log = context.logger.start(`services:stores:imageUpload`);
+    if (!id) {
+        throw new Error("store id is required");
+    }
+    let store = await db.store.findById(id)
+    if (!store) {
+        throw new Error("store not found");
+    }
+    if (type === 'gallery') {
+        if (files == undefined && files.length < 0) throw new Error("image is required");
+        for (const file of files) {
+            let fileName = file.filename.replace(/ /g, '')
+            store.gallery.push({ name: fileName })
+        }
+        await store.save()
+    }
+    else if (type === 'logo') {
+        let fileName = files[0].filename.replace(/ /g, '')
+        if (files == undefined && files.length < 0) throw new Error("image is required");
+        if (store.logo != "") {
+            const path = file.destination + '/' + store.logo
+            try {
+                fs.unlinkSync(path);
+                console.log(`image successfully removed from ${path}`);
+            } catch (error) {
+                console.error('there was an error to remove image:', error.message);
+            }
+        }
+        store.logo = fileName
+        await store.save()
+    }
+    else if (type === 'banner') {
+        let fileName = files[0].filename.replace(/ /g, '')
+        if (files == undefined && files.length < 0) throw new Error("image is required");
+        if (store.logo != "") {
+            const path = file.destination + '/' + store.banner
+            try {
+                fs.unlinkSync(path);
+                console.log(`image successfully removed from ${path}`);
+            } catch (error) {
+                console.error('there was an error to remove image:', error.message);
+            }
+        }
+        store.banner = fileName
+        await store.save()
 
-
-// const imageUpload = async (id, files, context) => {
-//     const log = context.logger.start(`services:stores:imageUpload`);
-//     let fileName = files[0].filename.replace(/ /g, '')
-//     let file = files[0]
-//     if (!id) {
-//         throw new Error("store id is required");
-//     }
-//     let store = await db.store.findById(id)
-//     if (!store) {
-//         throw new Error("store not found");
-//     }
-//     if (files == undefined && files.length < 0) throw new Error("image is required");
-//     if (store.profileImageName != "") {
-//         const path = file.destination + '/' + store.profileImageName
-//         try {
-//             fs.unlinkSync(path);
-//             console.log(`image successfully removed from ${path}`);
-//         } catch (error) {
-//             console.error('there was an error to remove image:', error.message);
-//         }
-//     }
-//     store.profileImageName = fileName
-//     await store.save()
-//     log.end();
-//     return 'image uploaded successfully'
-// };
+    }
+    else {
+        throw new Error("type is required");
+    }
+    log.end();
+    return 'image uploaded successfully'
+};
 
 exports.create = create;
 exports.search = search;
 exports.getStoreById = getStoreById;
 exports.update = update;
+exports.imageUpload = imageUpload;

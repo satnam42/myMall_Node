@@ -10,7 +10,6 @@ const store = mongoose.Schema({
     slogan: { type: String, default: "" },
     logo: { type: String, default: "" },
     banner: { type: String, default: "" },
-    slider: { type: String, default: "" },
     webSiteUrl: { type: String, default: "" },
     gallery: [{
         name: { type: String, default: "" },

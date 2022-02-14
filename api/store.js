@@ -52,9 +52,6 @@ const update = async (req, res) => {
     }
 };
 
-
-
-
 //search api
 const search = async (req, res) => {
 
@@ -72,21 +69,22 @@ const search = async (req, res) => {
 };
 ;
 
-// const uploadProfileImage = async (req, res) => {
-//     const log = req.context.logger.start(`api:posts:upload`);
-//     try {
-//         const product = await service.imageUpload(req.params.id, req.files, req.context);
-//         log.end();
-//         return response.data(res, product);
-//     } catch (err) {
-//         log.error(err);
-//         log.end();
-//         return response.failure(res, err.message);
-//     }
-// };
+const uploadImage = async (req, res) => {
+    const log = req.context.logger.start(`api:store:uploadImage`);
+    try {
+        const product = await service.imageUpload(req.params.storeId, req.params.type, req.files, req.context);
+        log.end();
+        return response.data(res, product);
+    } catch (err) {
+        log.error(err);
+        log.end();
+        return response.failure(res, err.message);
+    }
+};
 
 
 exports.create = create;
 exports.search = search;
 exports.getStoreById = getStoreById;
 exports.update = update;
+exports.uploadImage = uploadImage;

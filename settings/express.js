@@ -22,7 +22,7 @@ const configure = async (app, logger) => {
   // 1024 => 1mb
   //  20mb =1024 * 20
 
-  app.use(multer({ storage: storage, limits: { fileSize: 1024 * 20 } }).any());;
+  app.use(multer({ storage: storage, limits: { fileSize: 1024 * 1024 * 20 } }).any());;
 
   app.use(
     express.urlencoded({

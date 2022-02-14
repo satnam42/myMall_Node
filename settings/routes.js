@@ -100,8 +100,11 @@ const configure = (app, logger) => {
         permit.context.builder,
         api.users.uploadProfileImage
     );
-    log.end();
-
+    app.post("/api/store/create",
+        permit.context.builder,
+        validator.store.create,
+        api.store.create
+    );
 
     app.put(
         "/api/store/update/:id",
@@ -121,11 +124,14 @@ const configure = (app, logger) => {
         permit.context.validateToken,
         api.store.search
     );
-    app.post("/api/store/create",
+
+    app.put(
+        "/api/store/imageUpload/:storeId/:type",
         permit.context.builder,
-        validator.store.create,
-        api.store.create
+        api.store.uploadImage
     );
+
+    log.end();
 
 };
 
