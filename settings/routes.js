@@ -131,6 +131,43 @@ const configure = (app, logger) => {
         api.store.uploadImage
     );
 
+    app.post("/api/products/add",
+        permit.context.validateToken,
+        validator.products.create,
+        api.products.add
+    );
+
+    app.put(
+        "/api/products/update/:id",
+        permit.context.validateToken,
+        validator.products.update,
+        api.products.update
+    );
+
+    app.get(
+        "/api/products/getProductById/:id",
+        permit.context.builder,
+        api.products.getProductById
+    );
+
+    app.get(
+        "/api/products/getProducts",
+        permit.context.builder,
+        api.products.getProducts
+    );
+
+    app.get(
+        "/api/products/search",
+        permit.context.validateToken,
+        api.products.search
+    );
+
+    app.put(
+        "/api/products/imageUpload/:productId/:type",
+        permit.context.builder,
+        api.products.uploadImage
+    );
+
     log.end();
 
 };
