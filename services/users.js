@@ -241,13 +241,13 @@ const sendMail = async (email, message, subject) => {
     var smtpTrans = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-            user: `datinggg4you@gmail.com`,
-            pass: `mspl@321`
+            user: `ourmallapp@gmail.com`,
+            pass: `myMall@321`
         }
     });
     // email send to registered email
     var mailOptions = {
-        from: 'Dating',
+        from: 'myMall',
         to: email,
         subject: subject,
         html: message
