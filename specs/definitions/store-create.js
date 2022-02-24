@@ -15,6 +15,18 @@ module.exports = [
             webSiteUrl: {
                 type: "string"
             },
+            timing: {
+                properties: {
+                    to: { type: 'date' },
+                    from: { type: 'date' },
+                },
+            },
+            priceRange: {
+                properties: {
+                    to: { type: 'number' },
+                    from: { type: 'number' },
+                },
+            },
             // deviceToken: {
             //     type: "string"
             // },
