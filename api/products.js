@@ -32,6 +32,7 @@ const getProductById = async (req, res) => {
         return response.failure(res, err.message);
     }
 };
+
 const getProducts = async (req, res) => {
     const log = req.context.logger.start(`api:products:getProducts`);
     try {
@@ -46,7 +47,6 @@ const getProducts = async (req, res) => {
         return response.failure(res, err.message);
     }
 };
-
 
 
 //update product
@@ -93,6 +93,30 @@ const uploadImage = async (req, res) => {
         return response.failure(res, err.message);
     }
 };
+const favOrUnFav = async (req, res) => {
+    const log = req.context.logger.start(`api:products:favOrUnFav`);
+    try {
+        const fav = await service.makeFavOrUnFav(req.body, req.context);
+        log.end();
+        return response.data(res, fav);
+    } catch (err) {
+        log.error(err);
+        log.end();
+        return response.failure(res, err.message);
+    }
+};
+const favProducts = async (req, res) => {
+    const log = req.context.logger.start(`api:products:favProducts`);
+    try {
+        const fav = await service.getFavProducts(req.params.id, req.context);
+        log.end();
+        return response.data(res, fav);
+    } catch (err) {
+        log.error(err);
+        log.end();
+        return response.failure(res, err.message);
+    }
+};
 
 
 exports.add = add;
@@ -101,3 +125,5 @@ exports.getProductById = getProductById;
 exports.update = update;
 exports.uploadImage = uploadImage;
 exports.getProducts = getProducts;
+exports.favOrUnFav = favOrUnFav;
+exports.favProducts = favProducts;

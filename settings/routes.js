@@ -156,6 +156,16 @@ const configure = (app, logger) => {
         api.products.getProducts
     );
 
+    app.post("/api/products/makeFavOrUnfav",
+        permit.context.builder,
+        api.products.favOrUnFav
+    );
+    app.get(
+        "/api/products/favList/:id",
+        permit.context.builder,
+        api.products.favProducts
+    );
+
     app.get(
         "/api/products/search",
         permit.context.validateToken,

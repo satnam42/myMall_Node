@@ -10,7 +10,7 @@ module.exports = [
                 type: "string"
             },
             slogan: {
-                type: "date"
+                type: "string"
             },
             webSiteUrl: {
                 type: "string"

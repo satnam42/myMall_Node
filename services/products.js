@@ -58,7 +58,7 @@ const add = async (model, context) => {
     if (product) {
         throw new Error("product already exists");
     }
-    if (model.storeId) {
+    if (!model.storeId) {
         throw new Error("store Id is required");
     }
 
@@ -80,6 +80,7 @@ const getProductById = async (id, context) => {
     log.end();
     return product;
 };
+
 const getProducts = async (context) => {
     const log = context.logger.start(`services:products:getProducts`);
     let products = await db.product.find()
@@ -149,6 +150,48 @@ const imageUpload = async (id, type, files, context) => {
     log.end();
     return 'image uploaded successfully'
 };
+const buildFav = async (model, context) => {
+    const { userId, productId } = model;
+    const log = context.logger.start(`services:products:buildFav${model}`);
+    const favourite = await new db.favourite({
+        user: userId,
+        product: productId,
+    }).save();
+    log.end();
+    return favourite;
+};
+
+const makeFavOrUnFav = async (model, context) => {
+    const log = context.logger.start("services:products:makeFavOrUnFav");
+
+    if (model.userId == "" || model.productId == "" || model.userId == undefined || model.productId == undefined) {
+        throw new Error('product id and user id is required')
+    }
+    let favourite = await db.favourite.findOne({ $and: [{ user: model.userId }, { product: model.productId }] })
+    if (favourite) {
+        favourite = await db.favourite.deleteOne({ _id: favourite.id })
+        if (favourite.deletedCount == 0) {
+            throw new Error('something went wrong')
+        }
+        log.end();
+        return 'unfav successfully';
+    } else {
+        favourite = buildFav(model, context);
+        log.end();
+        return 'fav successfully';
+    }
+
+};
+const getFavProducts = async (id, context) => {
+    const log = context.logger.start("services:products:makeFavOrUnFav");
+    if (!id) {
+        throw new Error(' user id is required')
+    }
+    let favourites = await db.favourite.find({ user: id }).populate('product')
+    log.end();
+    return favourites;
+
+};
 
 exports.add = add;
 exports.search = search;
@@ -156,3 +199,5 @@ exports.getProductById = getProductById;
 exports.getProducts = getProducts;
 exports.update = update;
 exports.imageUpload = imageUpload;
+exports.makeFavOrUnFav = makeFavOrUnFav;
+exports.getFavProducts = getFavProducts;
