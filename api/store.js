@@ -72,9 +72,33 @@ const search = async (req, res) => {
 const uploadImage = async (req, res) => {
     const log = req.context.logger.start(`api:store:uploadImage`);
     try {
-        const product = await service.imageUpload(req.params.storeId, req.params.type, req.files, req.context);
+        const store = await service.imageUpload(req.params.storeId, req.params.type, req.files, req.context);
         log.end();
-        return response.data(res, product);
+        return response.data(res, store);
+    } catch (err) {
+        log.error(err);
+        log.end();
+        return response.failure(res, err.message);
+    }
+};
+const favOrUnFav = async (req, res) => {
+    const log = req.context.logger.start(`api:stores:favOrUnFav`);
+    try {
+        const fav = await service.makeFavOrUnFav(req.body, req.context);
+        log.end();
+        return response.data(res, fav);
+    } catch (err) {
+        log.error(err);
+        log.end();
+        return response.failure(res, err.message);
+    }
+};
+const favStores = async (req, res) => {
+    const log = req.context.logger.start(`api:stores:favStores`);
+    try {
+        const fav = await service.getFavStores(req.params.id, req.context);
+        log.end();
+        return response.data(res, fav);
     } catch (err) {
         log.error(err);
         log.end();
@@ -83,8 +107,12 @@ const uploadImage = async (req, res) => {
 };
 
 
+
+
 exports.create = create;
 exports.search = search;
 exports.getStoreById = getStoreById;
 exports.update = update;
 exports.uploadImage = uploadImage;
+exports.favOrUnFav = favOrUnFav;
+exports.favStores = favStores;

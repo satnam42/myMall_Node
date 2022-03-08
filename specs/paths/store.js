@@ -168,4 +168,58 @@ module.exports = [{
         }
     }
 },
+{
+    url: "/makeFavOrUnfav",
+    post: {
+        summary: "makeFavOrUnfav",
+        description: "makeFavOrUnfav",
+        parameters: [{
+            in: "body",
+            name: "body",
+            description: "model of makeFavOrUnfav",
+            required: true,
+            schema: {
+                $ref: "#/definitions/favOrUnFav"
+            }
+        }],
+        responses: {
+            default: {
+                description: "Unexpected error",
+                schema: {
+                    $ref: "#/definitions/Error"
+                }
+            }
+        }
+    }
+},
+{
+    url: "/favList/{id}",
+    get: {
+        summary: "fav store List",
+        description: "fav store List",
+        parameters: [
+            // {
+            //     in: "header",
+            //     name: "x-access-token",
+            //     description: "token to access api",
+            //     required: true,
+            //     type: "string"
+            // },
+            {
+                in: "path",
+                type: "string",
+                name: "id",
+                description: "user id",
+                required: true
+            },],
+        responses: {
+            default: {
+                description: "Unexpected error",
+                schema: {
+                    $ref: "#/definitions/Error"
+                }
+            }
+        }
+    }
+},
 ];

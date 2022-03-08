@@ -130,6 +130,15 @@ const configure = (app, logger) => {
         permit.context.builder,
         api.store.uploadImage
     );
+    app.post("/api/store/makeFavOrUnfav",
+        permit.context.builder,
+        api.store.favOrUnFav
+    );
+    app.get(
+        "/api/store/favList/:id",
+        permit.context.builder,
+        api.store.favStores
+    );
 
     app.post("/api/products/add",
         permit.context.validateToken,

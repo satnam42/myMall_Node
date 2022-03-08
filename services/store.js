@@ -145,9 +145,52 @@ const imageUpload = async (id, type, files, context) => {
     log.end();
     return 'image uploaded successfully'
 };
+const buildFav = async (model, context) => {
+    const { userId, storeId } = model;
+    const log = context.logger.start(`services:stores:buildFav${model}`);
+    const favourite = await new db.favourite({
+        user: userId,
+        store: storeId,
+    }).save();
+    log.end();
+    return favourite;
+};
 
+const makeFavOrUnFav = async (model, context) => {
+    const log = context.logger.start("services:stores:makeFavOrUnFav");
+
+    if (model.userId == "" || model.storeId == "" || model.userId == undefined || model.storeId == undefined) {
+        throw new Error('store id and user id is required')
+    }
+    let favourite = await db.favourite.findOne({ $and: [{ user: model.userId }, { store: model.storeId }] })
+    if (favourite) {
+        favourite = await db.favourite.deleteOne({ _id: favourite.id })
+        if (favourite.deletedCount == 0) {
+            throw new Error('something went wrong')
+        }
+        log.end();
+        return 'unfav successfully';
+    } else {
+        favourite = buildFav(model, context);
+        log.end();
+        return 'fav successfully';
+    }
+
+};
+const getFavStores = async (id, context) => {
+    const log = context.logger.start("services:stores:makeFavOrUnFav");
+    if (!id) {
+        throw new Error(' user id is required')
+    }
+    let favourites = await db.favourite.find({ user: id }).populate('store')
+    log.end();
+    return favourites;
+
+};
 exports.create = create;
 exports.search = search;
 exports.getStoreById = getStoreById;
 exports.update = update;
 exports.imageUpload = imageUpload;
+exports.makeFavOrUnFav = makeFavOrUnFav;
+exports.getFavStores = getFavStores;

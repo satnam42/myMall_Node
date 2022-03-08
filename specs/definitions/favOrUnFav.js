@@ -8,6 +8,10 @@ module.exports = [
             productId: {
                 type: "string"
             },
+
+            storeId: {
+                type: "string"
+            },
         }
     }
 ];

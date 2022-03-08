@@ -11,6 +11,11 @@ const favourite = mongoose.Schema({
         ref: 'product',
         required: true
     },
+    store: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'store',
+        required: true
+    },
 },
     { timestamps: true } //to include createdAt and updatedAt
 );

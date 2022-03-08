@@ -20,10 +20,12 @@ const boot = () => {
   const log = logger.start("app:boot");
   log.info(`environment:  ${process.env.NODE_ENV}`);
   log.info("starting server");
+
   server.listen(port, () => {
     log.info(`listening on port: ${port}`);
     log.end();
   });
+
 };
 
 const init = async () => {
