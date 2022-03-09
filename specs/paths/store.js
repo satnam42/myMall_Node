@@ -179,7 +179,7 @@ module.exports = [{
             description: "model of makeFavOrUnfav",
             required: true,
             schema: {
-                $ref: "#/definitions/favOrUnFav"
+                $ref: "#/definitions/favOrUnFavStore"
             }
         }],
         responses: {

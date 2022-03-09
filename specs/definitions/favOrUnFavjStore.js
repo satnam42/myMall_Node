@@ -1,14 +1,10 @@
 module.exports = [
     {
-        name: "favOrUnFav",
+        name: "favOrUnFavStore",
         properties: {
             userId: {
                 type: "string"
             },
-            productId: {
-                type: "string"
-            },
-
             storeId: {
                 type: "string"
             },

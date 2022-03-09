@@ -171,7 +171,7 @@ const makeFavOrUnFav = async (model, context) => {
         log.end();
         return 'unfav successfully';
     } else {
-        favourite = buildFav(model, context);
+        favourite = await buildFav(model, context);
         log.end();
         return 'fav successfully';
     }
