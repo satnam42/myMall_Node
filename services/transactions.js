@@ -1,9 +1,8 @@
 "use strict";
 
-// const sk = require('config').get('stripe').private
+const sk = require('config').get('stripe').private
 // console.log('sk', sk)
-// const stripe = require('stripe')(sk)
-const stripe = require('stripe')
+const stripe = require('stripe')(sk)
 
 
 const buildTransaction = async (model, context) => {

@@ -18,6 +18,10 @@
         "url": "http://93.188.167.68/projects/myMall_nodejs/assets/images/",
         "port": 8004
     },
+    "stripe": {
+        "public": "pk_test_51J7Hz6GNDoxR4dRyOO1zNMFOmrcVo2VBsz3rH9MAzJ4ywQqDt58j3ekVa8z31URvsvFcGzOXiEvhQJid9rmbUrlQ00qFZBn6n2",
+        "private": "sk_test_51J7Hz6GNDoxR4dRy4DcePJT3nLC7p3rY3iCjmv6uY0wD6q6vTpb82rrzNjK63sGKHuHKd6hgZlooKnolwP06xToH00nxdsgGN9"
+    },
     "providers": {},
     "logger": {
         "logStart": false,
