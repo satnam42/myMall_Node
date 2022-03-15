@@ -187,6 +187,108 @@ const configure = (app, logger) => {
         api.products.uploadImage
     );
 
+    app.post(
+        "/api/categories/createCategory",
+        permit.context.builder,
+        api.categories.createCategory
+    );
+
+    app.post(
+        "/api/categories/createSubCategory",
+        permit.context.builder,
+        api.categories.createSubCategory
+    );
+
+    app.post(
+        "/api/categories/getCategories",
+        permit.context.builder,
+        api.categories.getCategories
+    );
+
+    app.delete(
+        "/api/categories/delete/:id",
+        permit.context.builder,
+        api.categories.remove
+    );
+
+    /* Cart Section */
+
+    app.post(
+        "/api/carts/addToCart",
+        permit.context.builder,
+        api.carts.create
+    );
+
+    app.post(
+        "/api/carts/addToFav",
+        permit.context.builder,
+        api.carts.addToFav
+    );
+
+    app.get(
+        "/api/carts/getFav",
+        permit.context.builder,
+        api.carts.getFav
+    );
+
+    app.get(
+        "/api/carts/getCarts",
+        permit.context.builder,
+        api.carts.getCarts
+    );
+
+    app.delete(
+        "/api/carts/deleteItem/:id",
+        permit.context.builder,
+        api.carts.deleteItem
+    );
+
+    app.post(
+        "/api/carts/addAddress",
+        permit.context.builder,
+        api.carts.addAddress
+    );
+
+    app.post(
+        "/api/carts/getAddress",
+        permit.context.builder,
+        api.carts.getAddress
+    );
+
+    /* Orders Section */
+
+    app.post(
+        "/api/orders/placeOrder",
+        permit.context.builder,
+        api.orders.placeOrder
+    );
+
+    app.get(
+        "/api/orders/getOrder",
+        permit.context.builder,
+        api.orders.getOrder
+    );
+
+    app.post(
+        "/api/orders/updateStatus",
+        permit.context.builder,
+        api.orders.updateStatus
+    );
+
+    app.get(
+        "/api/orders/getAllOrders",
+        permit.context.builder,
+        api.orders.getAllOrders
+    );
+
+    /* payment */
+
+    app.post(
+        "/api/transactions/create",
+        permit.context.builder,
+        api.transactions.create
+    );
+
     log.end();
 
 };
