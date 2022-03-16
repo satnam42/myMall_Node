@@ -139,6 +139,11 @@ const configure = (app, logger) => {
         permit.context.builder,
         api.store.favStores
     );
+    app.get(
+        "/api/store/list",
+        permit.context.builder,
+        api.store.list
+    );
 
     app.post("/api/products/add",
         permit.context.validateToken,

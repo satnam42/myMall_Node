@@ -187,6 +187,12 @@ const getFavStores = async (id, context) => {
     return favourites;
 
 };
+const getAllStores = async (context) => {
+    const log = context.logger.start(`services:stores:getAllStores`);
+    const stores = await db.store.find();
+    log.end();
+    return stores;
+};
 exports.create = create;
 exports.search = search;
 exports.getStoreById = getStoreById;
@@ -194,3 +200,4 @@ exports.update = update;
 exports.imageUpload = imageUpload;
 exports.makeFavOrUnFav = makeFavOrUnFav;
 exports.getFavStores = getFavStores;
+exports.getAllStores = getAllStores;

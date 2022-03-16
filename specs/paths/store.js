@@ -222,4 +222,23 @@ module.exports = [{
         }
     }
 },
+{
+    url: "/list",
+    get: {
+        summary: "get stores list",
+        description: "get all stores list",
+        parameters: [
+
+
+        ],
+        responses: {
+            default: {
+                description: "Unexpected error",
+                schema: {
+                    $ref: "#/definitions/Error"
+                }
+            }
+        }
+    }
+}
 ];
