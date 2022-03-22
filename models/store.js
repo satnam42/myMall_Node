@@ -12,8 +12,8 @@ const store = mongoose.Schema({
         to: { type: Number, default: 0 },
     },
     timing: {
-        from: { type: Date, default: '' },
-        to: { type: Date, default: '' },
+        from: { type: String, default: '' },
+        to: { type: String, default: '' },
     },
     slogan: { type: String, default: "" },
     logo: { type: String, default: "" },
