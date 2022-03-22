@@ -29,10 +29,11 @@ const setStore = async (model, store, context) => {
 //register store
 
 const buildStore = async (model, context) => {
-    const { name, description, slogan, location, priceRange, timing } = model;
+    const { name, description, slogan, location, priceRange, timing, userId } = model;
     const log = context.logger.start(`services:stores:buildStore${model}`);
     const store = await new db.store({
         name: name,
+        user: userId,
         description: description,
         priceRange: priceRange,
         timing: timing,
@@ -68,6 +69,17 @@ const getStoreById = async (id, context) => {
     }
     log.end();
     return store;
+};
+
+const myStores = async (id, context) => {
+    const log = context.logger.start(`services:stores:myStores`);
+    if (!id) {
+        throw new Error("user id is required");
+    }
+    const stores = await db.store.find({ user: id })
+
+    log.end();
+    return stores;
 };
 
 
@@ -201,3 +213,4 @@ exports.imageUpload = imageUpload;
 exports.makeFavOrUnFav = makeFavOrUnFav;
 exports.getFavStores = getFavStores;
 exports.getAllStores = getAllStores;
+exports.myStores = myStores;

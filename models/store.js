@@ -2,6 +2,11 @@ const mongoose = require('mongoose')
 
 const store = mongoose.Schema({
     name: { type: String, required: true },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+        required: true
+    },
     description: { type: String, required: true },
     location: {
         type: { type: String },

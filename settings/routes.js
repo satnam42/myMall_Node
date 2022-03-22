@@ -140,6 +140,12 @@ const configure = (app, logger) => {
         api.store.favStores
     );
     app.get(
+        "/api/store/myStores/:id",
+        permit.context.validateToken,
+        api.store.myStores
+    );
+
+    app.get(
         "/api/store/list",
         permit.context.builder,
         api.store.list

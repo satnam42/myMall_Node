@@ -6,6 +6,9 @@ module.exports = [
             description: {
                 type: "string"
             },
+            userId: {
+                type: "string"
+            },
             name: {
                 type: "string"
             },

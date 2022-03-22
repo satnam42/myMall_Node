@@ -139,6 +139,36 @@ module.exports = [{
     }
 },
 {
+    url: "/myStores/{id}",
+    get: {
+        summary: "myStores",
+        description: "myStores",
+        parameters: [
+            {
+                in: "header",
+                name: "x-access-token",
+                description: "token to access api",
+                required: true,
+                type: "string"
+            },
+            {
+                in: "path",
+                type: "string",
+                name: "id",
+                description: "user id",
+                required: true
+            },],
+        responses: {
+            default: {
+                description: "Unexpected error",
+                schema: {
+                    $ref: "#/definitions/Error"
+                }
+            }
+        }
+    }
+},
+{
     url: "/search",
     get: {
         summary: "search",
