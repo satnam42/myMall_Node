@@ -30,9 +30,21 @@ module.exports = [
                     from: { type: 'number' },
                 },
             },
-            // deviceToken: {
-            //     type: "string"
-            // },
+            city: {
+                type: "string"
+            },
+            scotNo: {
+                type: "string"
+            },
+            state: {
+                type: "string"
+            },
+            landmark: {
+                type: "string"
+            },
+            zipCode: {
+                type: "string"
+            },
             location: {
                 properties: {
                     type: 'array',

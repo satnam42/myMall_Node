@@ -29,7 +29,7 @@ const setStore = async (model, store, context) => {
 //register store
 
 const buildStore = async (model, context) => {
-    const { name, description, slogan, location, priceRange, timing, userId } = model;
+    const { name, description, slogan, location, zipCode, landmark, state, city, scotNo, priceRange, timing, userId } = model;
     const log = context.logger.start(`services:stores:buildStore${model}`);
     const store = await new db.store({
         name: name,
@@ -37,7 +37,12 @@ const buildStore = async (model, context) => {
         description: description,
         priceRange: priceRange,
         timing: timing,
+        scotNo: scotNo,
+        city: city,
+        state: state,
+        landmark: landmark,
         slogan: slogan,
+        zipCode, zipCode,
         location: location
     }).save();
     log.end();
