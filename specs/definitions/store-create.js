@@ -17,8 +17,8 @@ module.exports = [
             },
             timing: {
                 properties: {
-                    to: { type: 'date' },
-                    from: { type: 'date' },
+                    to: { type: 'string' },
+                    from: { type: 'string' },
                 },
             },
             priceRange: {
