@@ -12,6 +12,10 @@ const create = (req, res, next) => {
         log.end();
         return response.failure(res, "name is required");
     }
+    if (!req.body.userId) {
+        log.end();
+        return response.failure(res, "userId is required");
+    }
 
     log.end();
     return next();

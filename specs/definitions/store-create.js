@@ -45,6 +45,9 @@ module.exports = [
             zipCode: {
                 type: "string"
             },
+            contactNo: {
+                type: "string"
+            },
             location: {
                 properties: {
                     type: 'array',

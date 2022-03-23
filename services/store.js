@@ -1,6 +1,3 @@
-const encrypt = require("../permit/crypto.js");
-const auth = require("../permit/auth");
-var nodemailer = require('nodemailer')
 const fs = require('fs');
 
 const setStore = async (model, store, context) => {
@@ -29,7 +26,7 @@ const setStore = async (model, store, context) => {
 //register store
 
 const buildStore = async (model, context) => {
-    const { name, description, slogan, location, zipCode, landmark, state, city, scotNo, priceRange, timing, userId } = model;
+    const { name, description, slogan, location, zipCode, landmark, state, city, scotNo, priceRange, timing, userId, contactNo } = model;
     const log = context.logger.start(`services:stores:buildStore${model}`);
     const store = await new db.store({
         name: name,
@@ -43,6 +40,7 @@ const buildStore = async (model, context) => {
         landmark: landmark,
         slogan: slogan,
         zipCode, zipCode,
+        contactNo, contactNo,
         location: location
     }).save();
     log.end();
@@ -51,9 +49,10 @@ const buildStore = async (model, context) => {
 
 const create = async (model, context) => {
     const log = context.logger.start("services:stores:create");
-    let store = await db.store.findOne({ name: model.name, description: model.description, slogan: model.slogan });
+
+    let store = await db.store.findOne({ user: model.userId });
     if (store) {
-        throw new Error("store already exists");
+        throw new Error("you have already a store");
     } else {
         store = buildStore(model, context);
         log.end();

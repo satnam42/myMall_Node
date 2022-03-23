@@ -33,6 +33,7 @@ const store = mongoose.Schema({
     city: { type: String, default: "" },
     state: { type: String, default: "" },
     landmark: { type: String, default: "" },
+    contactNo: { type: String, default: "" },
     zipCode: { type: String, default: "" },
 }, { timestamps: true })
 mongoose.model('store', store)
