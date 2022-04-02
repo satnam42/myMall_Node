@@ -178,7 +178,7 @@ const makeFavOrUnFav = async (model, context) => {
     if (model.userId == "" || model.storeId == "" || model.userId == undefined || model.storeId == undefined) {
         throw new Error('store id and user id is required')
     }
-    let favourite = await db.favourite.findOne({ $and: [{ user: model.userId }, { store: model.storeId }] })
+    let favourite = await db.favourite.findOne({ user: model.userId, store: model.storeId })
     if (favourite) {
         favourite = await db.favourite.deleteOne({ _id: favourite.id })
         if (favourite.deletedCount == 0) {
@@ -198,7 +198,7 @@ const getFavStores = async (id, context) => {
     if (!id) {
         throw new Error(' user id is required')
     }
-    let favourites = await db.favourite.find({ user: id }).populate('store')
+    let favourites = await db.favourite.find({ user: id }).populate("store")
     log.end();
     return favourites;
 
