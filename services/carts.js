@@ -26,7 +26,7 @@ const ObjectId = require("mongodb").ObjectID;
 // };
 
 const build = async (model, context) => {
-    const { userId, productId, quantity, total, variation, status } = model;
+    const { userId, productId, quantity, total, status, storeId } = model;
     const log = context.logger.start(`services:carts:build${model}`);
     let productModel = {
         user: userId,
