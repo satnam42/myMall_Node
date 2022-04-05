@@ -230,17 +230,17 @@ const configure = (app, logger) => {
         api.carts.create
     );
 
-    app.post(
-        "/api/carts/addToFav",
-        permit.context.builder,
-        api.carts.addToFav
-    );
+    // app.post(
+    //     "/api/carts/addToFav",
+    //     permit.context.builder,
+    //     api.carts.addToFav
+    // );
 
-    app.get(
-        "/api/carts/getFav",
-        permit.context.builder,
-        api.carts.getFav
-    );
+    // app.get(
+    //     "/api/carts/getFav",
+    //     permit.context.builder,
+    //     api.carts.getFav
+    // );
 
     app.get(
         "/api/carts/getCarts",

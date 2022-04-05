@@ -31,10 +31,10 @@ const build = async (model, context) => {
     let productModel = {
         user: userId,
         product: productId,
+        store: storeId,
         quantity: quantity,
         total: total,
         status: status,
-        variation: variation,
         createdOn: new Date(),
         updatedOn: new Date()
     }
@@ -45,15 +45,19 @@ const build = async (model, context) => {
 
 const create = async (model, context) => {
     const log = context.logger.start("services:carts:create");
-    const isProductExists = await db.product.findById(model.
-        productId)
+    const isProductExists = await db.product.findById(model.productId)
+    const isStoreIdExists = await db.store.findById(model.storeId)
+    if (!isStoreIdExists) {
+        throw new Error("store not found");
+    }
     if (!isProductExists) {
         throw new Error("product not found");
     } else {
         const checkcart = await db.cart.findOne({
             user: { $eq: ObjectId(model.userId) },
             product: { $eq: ObjectId(model.productId) },
-            variation: { $eq: model.variation },
+            store: { $eq: ObjectId(model.storeId) },
+            // variation: { $eq: model.variation },
             status: { $eq: "Cart" }
         });
         if (!checkcart) {

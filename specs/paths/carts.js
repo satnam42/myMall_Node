@@ -48,56 +48,7 @@ module.exports = [{
         }
     }
 },
-{
-    url: "/addToFav",
-    post: {
-        summary: "addToFav",
-        description: "addToFav product",
-        parameters: [
-            {
-                in: "body",
-                name: "body",
-                description: "Model of addToFav",
-                required: true,
-                schema: {
-                    $ref: "#/definitions/addToFav"
-                }
-            }
-        ],
-        responses: {
-            default: {
-                description: "Unexpected error",
-                schema: {
-                    $ref: "#/definitions/Error"
-                }
-            }
-        }
-    }
-},
-{
-    url: "/getFav",
-    get: {
-        summary: "get Fav products API",
-        description: "get Fav products API",
-        parameters: [
-            {
-                in: "query",
-                type: "string",
-                name: "userId",
-                description: "pass user ID here",
-                required: true
-            },
-        ],
-        responses: {
-            default: {
-                description: "Unexpected error",
-                schema: {
-                    $ref: "#/definitions/Error"
-                }
-            }
-        }
-    }
-},
+
 // {
 //     url: "/addQuantity/{id}",
 //     put: {
@@ -194,54 +145,54 @@ module.exports = [{
         }
     }
 },
-{
-    url: "/addAddress",
-    post: {
-        summary: "addAddress",
-        description: "add and update Address",
-        parameters: [
-            {
-                in: "body",
-                name: "body",
-                description: "Place address ID in case of update address(optional)",
-                required: true,
-                schema: {
-                    $ref: "#/definitions/addAddress"
-                }
-            }
-        ],
-        responses: {
-            default: {
-                description: "Unexpected error",
-                schema: {
-                    $ref: "#/definitions/Error"
-                }
-            }
-        }
-    }
-},
-{
-    url: "/getAddress",
-    post: {
-        summary: "Get Address",
-        description: "Get Address",
-        parameters: [{
-            in: "body",
-            name: "body",
-            description: "Pass Address Id here to get Single Address",
-            required: false,
-            schema: {
-                $ref: "#/definitions/getAddress"
-            }
-        }],
-        responses: {
-            default: {
-                description: "Unexpected error",
-                schema: {
-                    $ref: "#/definitions/Error"
-                }
-            }
-        }
-    }
-},
+    // {
+    //     url: "/addAddress",
+    //     post: {
+    //         summary: "addAddress",
+    //         description: "add and update Address",
+    //         parameters: [
+    //             {
+    //                 in: "body",
+    //                 name: "body",
+    //                 description: "Place address ID in case of update address(optional)",
+    //                 required: true,
+    //                 schema: {
+    //                     $ref: "#/definitions/addAddress"
+    //                 }
+    //             }
+    //         ],
+    //         responses: {
+    //             default: {
+    //                 description: "Unexpected error",
+    //                 schema: {
+    //                     $ref: "#/definitions/Error"
+    //                 }
+    //             }
+    //         }
+    //     }
+    // },
+    // {
+    //     url: "/getAddress",
+    //     post: {
+    //         summary: "Get Address",
+    //         description: "Get Address",
+    //         parameters: [{
+    //             in: "body",
+    //             name: "body",
+    //             description: "Pass Address Id here to get Single Address",
+    //             required: false,
+    //             schema: {
+    //                 $ref: "#/definitions/getAddress"
+    //             }
+    //         }],
+    //         responses: {
+    //             default: {
+    //                 description: "Unexpected error",
+    //                 schema: {
+    //                     $ref: "#/definitions/Error"
+    //                 }
+    //             }
+    //         }
+    //     }
+    // },
 ];
