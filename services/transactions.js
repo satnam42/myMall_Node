@@ -7,26 +7,34 @@ const stripe = require('stripe')(sk)
 
 const buildTransaction = async (model, context) => {
     const log = context.logger.start(`services:transactions:buildTransaction${model}`);
-    const transaction = await new db.transaction({
+    // const transaction = await new db.transaction({
+    //     // paymentId: model.paymentId,
+    //     product: model.productId,
+    //     receiptUrl: '',
+    //     amount: model.amount,
+    //     status: 'Paid',
+    //     user: context._id,
+    // }).save();
+    const transaction = {
         // paymentId: model.paymentId,
         product: model.productId,
         receiptUrl: '',
         amount: model.amount,
         status: 'Paid',
         user: context._id,
-    }).save();
+    }
     log.end();
     return transaction;
 };
 
 const create = async (model, context) => {
     const log = context.logger.start("services:transactions:create");
-    const charge = await stripe.charges.create({
-        amount: model.amount,
-        currency: 'USD',
-        source: model.source,
-    });
-    const transaction = buildTransaction(charge, context);
+    // const charge = await stripe.charges.create({
+    //     amount: model.amount,
+    //     currency: 'USD',
+    //     source: model.source,
+    // });
+    const transaction = buildTransaction(model, context);
     log.end();
     return transaction;
 
