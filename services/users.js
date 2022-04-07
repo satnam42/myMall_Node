@@ -81,9 +81,9 @@ const login = async (model, context) => {
         throw new Error("password mismatch");
     }
     const token = auth.getToken(user.id, false, context);
-    user.token = token;
     user.updatedOn = new Date();
     await user.save();
+    user.token = token;
     log.end();
     return user;
 };
