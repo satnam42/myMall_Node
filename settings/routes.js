@@ -77,6 +77,12 @@ const configure = (app, logger) => {
         api.users.search
     );
 
+    app.get(
+        "/api/users/list",
+        permit.context.builder,
+        api.users.list
+    );
+
     app.post(
         "/api/users/forgotPassword",
         permit.context.builder,

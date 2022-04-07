@@ -33,7 +33,6 @@ const setUser = async (model, user, context) => {
     await user.save();
     return user;
 };
-
 //register user
 
 const buildUser = async (model, context) => {
@@ -87,7 +86,6 @@ const login = async (model, context) => {
     log.end();
     return user;
 };
-
 // change password
 
 const resetPassword = async (id, model, context) => {
@@ -120,7 +118,6 @@ const resetPassword = async (id, model, context) => {
 
 };
 
-
 const getUserById = async (id, context) => {
     const log = context.logger.start(`services:users:getUserById`);
     if (!id) {
@@ -133,7 +130,6 @@ const getUserById = async (id, context) => {
     log.end();
     return user;
 };
-
 
 const update = async (id, model, context) => {
     const log = context.logger.start(`services:users:update`);
@@ -152,6 +148,13 @@ const search = async (name, context) => {
         throw new Error("name is required");
     }
     const users = await db.user.find({ name: { "$regex": '.*' + name + '.*', "$options": 'i' } }).limit(5);
+    return users
+};
+
+const list = async (context) => {
+    const log = context.logger.start(`services:users:list`);
+    const users = await db.user.find()
+    log.end()
     return users
 };
 
@@ -300,3 +303,4 @@ exports.buildOtp = buildOtp;
 exports.changePassword = changePassword;
 exports.otpVerify = otpVerify;
 exports.imageUpload = imageUpload;
+exports.list = list;

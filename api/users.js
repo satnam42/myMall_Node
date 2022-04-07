@@ -50,6 +50,20 @@ const getUserById = async (req, res) => {
     }
 };
 
+const list = async (req, res) => {
+    const log = req.context.logger.start(`api:users:list`);
+    try {
+        const users = await service.list(req.context)
+        log.end();
+        return response.data(res, userMapper.toSearchModel(users));
+        // return response.success(res, message, user);
+    } catch (err) {
+        log.error(err);
+        log.end();
+        return response.failure(res, err.message);
+    }
+};
+
 // reset password
 const resetPassword = async (req, res) => {
     const log = req.context.logger.start("api:users:changePassword");
@@ -165,3 +179,4 @@ exports.forgotPassword = forgotPassword;
 exports.otpVerify = otpVerify;
 exports.update = update;
 exports.uploadProfileImage = uploadProfileImage;
+exports.list = list;

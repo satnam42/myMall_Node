@@ -304,5 +304,28 @@ module.exports = [
             }
         }
     },
+    {
+        url: "/list",
+        get: {
+            summary: "list",
+            description: "user list",
+            // parameters: [
+            //     {
+            //         in: "query",
+            //         type: "string",
+            //         name: "name",
+            //         description: "user name",
+            //         required: true
+            //     },],
+            responses: {
+                default: {
+                    description: "Unexpected error",
+                    schema: {
+                        $ref: "#/definitions/Error"
+                    }
+                }
+            }
+        }
+    },
 
 ];
