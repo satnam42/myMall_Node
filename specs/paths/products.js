@@ -30,8 +30,6 @@ module.exports = [{
         }
     }
 },
-
-
 {
     url: "/update/{id}",
     put: {

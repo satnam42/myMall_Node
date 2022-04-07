@@ -1,7 +1,7 @@
 "use strict";
 const service = require("../services/products");
 const response = require("../exchange/response");
-// const storeMapper = require("../mappers/product");
+const productMapper = require("../mappers/products");
 
 const add = async (req, res) => {
     const log = req.context.logger.start(`api:products:add`);
@@ -25,7 +25,7 @@ const getProductById = async (req, res) => {
         const message = "Current Product";
         log.end();
         // return response.success(res, message, storeMapper.toModel(product));
-        return response.success(res, message, product);
+        return response.success(res, message, productMapper.toModel(product));
     } catch (err) {
         log.error(err);
         log.end();
@@ -36,11 +36,11 @@ const getProductById = async (req, res) => {
 const getProducts = async (req, res) => {
     const log = req.context.logger.start(`api:products:getProducts`);
     try {
-        const product = await service.getProducts(req.context);
+        const products = await service.getProducts(req.context);
         const message = "Product fetched successfully ";
         log.end();
         // return response.success(res, message, storeMapper.toModel(product));
-        return response.success(res, message, product);
+        return response.success(res, message, productMapper.toSearchModel(products));
     } catch (err) {
         log.error(err);
         log.end();
@@ -71,7 +71,7 @@ const search = async (req, res) => {
     try {
         const products = await service.search(req.query.name, req.context);
         log.end();
-        return response.data(res, products);
+        return response.data(res, productMapper.toSearchModel(products));
     } catch (err) {
         log.error(err);
         log.end();
