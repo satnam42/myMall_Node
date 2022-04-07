@@ -16,6 +16,7 @@ exports.toModel = entity => {
         profileImageName: entity.profileImageName ? `${imageUrl}${entity.profileImageName}` : "",
         phoneNo: entity.phoneNo,
         dob: entity.dob,
+        token: entity.token,
         school: entity.school,
         aboutMe: entity.aboutMe,
         livingIn: entity.livingIn,
