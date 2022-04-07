@@ -131,8 +131,8 @@ const imageUpload = async (id, type, files, context) => {
     else if (type === 'banner') {
         let fileName = files[0].filename.replace(/ /g, '')
         if (files == undefined && files.length < 0) throw new Error("image is required");
-        if (product.logo != "") {
-            const path = file.destination + '/' + product.banner
+        if (product.banner != "") {
+            const path = files[0].destination + '/' + product.banner
             try {
                 fs.unlinkSync(path);
                 console.log(`image successfully removed from ${path}`);
