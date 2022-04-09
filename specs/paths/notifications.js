@@ -1,6 +1,6 @@
 module.exports = [
     {
-        url: "/dealOfTheDay`",
+        url: "/dealOfTheDay",
         post: {
             summary: "dealOfTheDay",
             description: "dealOfTheDay",
@@ -14,13 +14,13 @@ module.exports = [
                         $ref: "#/definitions/dealOfTheDay"
                     }
                 },
-                {
-                    in: "header",
-                    name: "x-access-token",
-                    description: "token to access api",
-                    required: true,
-                    type: "string"
-                }
+                // {
+                //     in: "header",
+                //     name: "x-access-token",
+                //     description: "token to access api",
+                //     required: true,
+                //     type: "string"
+                // }
             ],
             responses: {
                 default: {

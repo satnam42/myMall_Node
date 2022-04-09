@@ -6,7 +6,7 @@ const response = require("../exchange/response");
 const dealOfTheDay = async (req, res) => {
     const log = req.context.logger.start("api:notifications:dealOfTheDAy");
     try {
-        const notification = await service.dealOfTheDAy(req.body, req.context);
+        const notification = await service.dealOfTheDay(req.body, req.context);
         log.end();
         return response.data(res, notification);
         // return response.authorized(res, message, user, user.token);
