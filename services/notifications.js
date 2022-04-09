@@ -33,8 +33,7 @@ const admin = require("firebase-admin");
 // }
 
 const dealOfTheDay = async (model, context) => {
-    const log = context.logger.start(`services:notifications:dealOfTheDAy`);
-
+    const log = context.logger.start(`services:notifications:dealOfTheDay`);
     if (!model.deviceToken) {
         throw new Error('deviceToken is required')
     }
