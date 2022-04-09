@@ -191,6 +191,11 @@ const configure = (app, logger) => {
         permit.context.builder,
         api.products.favProducts
     );
+    app.get(
+        "/api/products/byStoreId/:id",
+        permit.context.builder,
+        api.products.getProductByStoreId
+    );
 
     app.get(
         "/api/products/search",

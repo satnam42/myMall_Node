@@ -118,18 +118,20 @@ const favProducts = async (req, res) => {
         return response.failure(res, err.message);
     }
 };
-const dealOfTheDAy = async (req, res) => {
-    const log = req.context.logger.start(`api:products:dealOfTheDAy`);
+
+const getProductByStoreId = async (req, res) => {
+    const log = req.context.logger.start(`api:products:getProductByStoreId`);
     try {
-        const fav = await service.dealOfTheDAy(req.body, req.context);
+        const products = await service.getProductByStoreId(req.params.id, req.context);
         log.end();
-        return response.data(res, fav);
+        return response.data(res, products);
     } catch (err) {
         log.error(err);
         log.end();
         return response.failure(res, err.message);
     }
 };
+
 
 
 exports.add = add;
@@ -140,3 +142,4 @@ exports.uploadImage = uploadImage;
 exports.getProducts = getProducts;
 exports.favOrUnFav = favOrUnFav;
 exports.favProducts = favProducts;
+exports.getProductByStoreId = getProductByStoreId;
