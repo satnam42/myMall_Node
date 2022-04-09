@@ -105,10 +105,23 @@ const favOrUnFav = async (req, res) => {
         return response.failure(res, err.message);
     }
 };
+
 const favProducts = async (req, res) => {
     const log = req.context.logger.start(`api:products:favProducts`);
     try {
         const fav = await service.getFavProducts(req.params.id, req.context);
+        log.end();
+        return response.data(res, fav);
+    } catch (err) {
+        log.error(err);
+        log.end();
+        return response.failure(res, err.message);
+    }
+};
+const dealOfTheDAy = async (req, res) => {
+    const log = req.context.logger.start(`api:products:dealOfTheDAy`);
+    try {
+        const fav = await service.dealOfTheDAy(req.body, req.context);
         log.end();
         return response.data(res, fav);
     } catch (err) {

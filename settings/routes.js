@@ -305,6 +305,12 @@ const configure = (app, logger) => {
         permit.context.builder,
         api.transactions.create
     );
+    // Notification
+    app.post(
+        "/api/notifications/dealOfTheDay",
+        permit.context.builder,
+        api.notifications.dealOfTheDay
+    );
 
     log.end();
 
