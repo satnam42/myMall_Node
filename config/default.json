@@ -1,6 +1,6 @@
 {
     "db": {
-        "url": "mongodb://93.188.167.68:33017",
+        "url": "mongodb://Mall:Double##$$2021@93.188.167.68:33017",
         "database": "myMall"
     },
     "app": {
