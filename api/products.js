@@ -105,6 +105,7 @@ const favOrUnFav = async (req, res) => {
         return response.failure(res, err.message);
     }
 };
+
 const favProducts = async (req, res) => {
     const log = req.context.logger.start(`api:products:favProducts`);
     try {
@@ -118,6 +119,20 @@ const favProducts = async (req, res) => {
     }
 };
 
+const getProductByStoreId = async (req, res) => {
+    const log = req.context.logger.start(`api:products:getProductByStoreId`);
+    try {
+        const products = await service.getProductByStoreId(req.params.id, req.context);
+        log.end();
+        return response.data(res, products);
+    } catch (err) {
+        log.error(err);
+        log.end();
+        return response.failure(res, err.message);
+    }
+};
+
+
 
 exports.add = add;
 exports.search = search;
@@ -127,3 +142,4 @@ exports.uploadImage = uploadImage;
 exports.getProducts = getProducts;
 exports.favOrUnFav = favOrUnFav;
 exports.favProducts = favProducts;
+exports.getProductByStoreId = getProductByStoreId;

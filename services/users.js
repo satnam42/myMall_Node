@@ -36,13 +36,14 @@ const setUser = async (model, user, context) => {
 //register user
 
 const buildUser = async (model, context) => {
-    const { email, password, name, dob } = model;
+    const { email, password, name, dob, fcmToken } = model;
     const log = context.logger.start(`services:users:buildUser${model}`);
     const user = await new db.user({
         email: email,
         name: name,
         dob: dob,
-        password: password
+        password: password,
+        fcmToken: fcmToken
     }).save();
     log.end();
     return user;

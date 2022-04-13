@@ -16,6 +16,9 @@ module.exports = [
             password: {
                 type: "string"
             },
+            fcmToken: {
+                type: "string"
+            },
             // deviceToken: {
             //     type: "string"
             // },

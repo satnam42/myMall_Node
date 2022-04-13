@@ -16,6 +16,10 @@ const create = (req, res, next) => {
         log.end();
         return response.failure(res, "password is required");
     }
+    if (!req.body.fcmToken) {
+        log.end();
+        return response.failure(res, "fcm Token is required");
+    }
     log.end();
     return next();
 };

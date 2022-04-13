@@ -28,6 +28,7 @@ exports.toModel = entity => {
         lookingFor: entity.lookingFor,
         sexualOrientation: entity.sexualOrientation,
         loc: entity.loc,
+        fcmToken: entity.fcmToken,
         status: entity.status,
     };
     if (entity.gallery && entity.gallery.length > 0) {
@@ -37,7 +38,6 @@ exports.toModel = entity => {
         model.gallery = entity.gallery
     }
     return model;
-
 };
 
 

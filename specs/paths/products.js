@@ -261,4 +261,34 @@ module.exports = [{
         }
     }
 },
+{
+    url: "/byStoreId/{id}",
+    get: {
+        summary: "product List",
+        description: "product List",
+        parameters: [
+            // {
+            //     in: "header",
+            //     name: "x-access-token",
+            //     description: "token to access api",
+            //     required: true,
+            //     type: "string"
+            // },
+            {
+                in: "path",
+                type: "string",
+                name: "id",
+                description: "store id",
+                required: true
+            },],
+        responses: {
+            default: {
+                description: "Unexpected error",
+                schema: {
+                    $ref: "#/definitions/Error"
+                }
+            }
+        }
+    }
+},
 ];

@@ -191,6 +191,11 @@ const configure = (app, logger) => {
         permit.context.builder,
         api.products.favProducts
     );
+    app.get(
+        "/api/products/byStoreId/:id",
+        permit.context.builder,
+        api.products.getProductByStoreId
+    );
 
     app.get(
         "/api/products/search",
@@ -304,6 +309,12 @@ const configure = (app, logger) => {
         "/api/transactions/create",
         permit.context.builder,
         api.transactions.create
+    );
+    // Notification
+    app.post(
+        "/api/notifications/dealOfTheDay",
+        permit.context.builder,
+        api.notifications.dealOfTheDay
     );
 
     log.end();

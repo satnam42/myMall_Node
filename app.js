@@ -5,15 +5,18 @@ const appConfig = require("config").get("app");
 const logger = require("@open-age/logger")("server");
 const Http = require("http");
 const port = process.env.PORT || appConfig.port || 3000;
-// var admin = require("firebase-admin");
+var admin = require("firebase-admin");
 const app = express();
 var server = Http.createServer(app);
+var serviceAccount = require("./mymall-acc.json");
 // require('./communication/chat.js').sockets(server);
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount)
-// });
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
 // require('./socket/socketEvents').sockets(server)
 
 const boot = () => {

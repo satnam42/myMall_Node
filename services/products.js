@@ -195,6 +195,16 @@ const getFavProducts = async (id, context) => {
     return favourites;
 
 };
+const getProductByStoreId = async (id, context) => {
+    const log = context.logger.start("services:products:getProductByStoreId");
+    if (!id) {
+        throw new Error(' store id is required')
+    }
+    let products = await db.product.find({ store: id }).populate('store')
+    log.end();
+    return products;
+
+};
 
 exports.add = add;
 exports.search = search;
@@ -204,3 +214,4 @@ exports.update = update;
 exports.imageUpload = imageUpload;
 exports.makeFavOrUnFav = makeFavOrUnFav;
 exports.getFavProducts = getFavProducts;
+exports.getProductByStoreId = getProductByStoreId;
