@@ -298,13 +298,13 @@ module.exports = [{
         summary: "add rating and Review",
         description: "add rating and Review",
         parameters: [
-            // {
-            //     in: "header",
-            //     name: "x-access-token",
-            //     description: "token to access api",
-            //     required: true,
-            //     type: "string"
-            // },
+            {
+                in: "header",
+                name: "x-access-token",
+                description: "token to access api",
+                required: true,
+                type: "string"
+            },
             {
                 in: "body",
                 name: "body",

@@ -212,7 +212,7 @@ const ratingReview = async (model, context) => {
     }
     const filter = {
         _id: model.productId,
-        rating: { $eq: { $elemMatch: { userId: model.userId } } }
+        "rating.userId": { $eq: model.userId }
     }
 
     let ratingReview = await db.product.findOne(filter)
@@ -220,17 +220,25 @@ const ratingReview = async (model, context) => {
     if (ratingReview != null || ratingReview != undefined) {
 
         const update = {
-            $addToSet: { rating: { userId: model.userId, rating: model.rating, customerName: model.customerName, review: model.review } }
+            $pull: { rating: { userId: model.userId, } }
         }
         ratingReview = await db.product.findOneAndUpdate(filter, update)
 
-    } else {
+        // const updated = {
+        //     $push: { rating: { userId: model.userId, rating: model.rating, customerName: model.customerName, review: model.review } }
+        // }
+        // ratingReview = await db.product.findOneAndUpdate(filter, updated)
 
-        const update = {
-            $push: { rating: { userId: model.userId, rating: model.rating, customerName: model.customerName, review: model.review } }
-        }
-        ratingReview = await db.product.findOneAndUpdate(filter, update)
+
+
     }
+    const query = {
+        _id: model.productId,
+    }
+    const updated = {
+        $push: { rating: { userId: model.userId, rating: model.rating, customerName: model.customerName, review: model.review } }
+    }
+    ratingReview = await db.product.findOneAndUpdate(query, updated)
 
 
     return ratingReview;
