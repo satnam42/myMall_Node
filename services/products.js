@@ -1,7 +1,7 @@
 const encrypt = require("../permit/crypto.js");
 const auth = require("../permit/auth");
 const fs = require('fs');
-const { size } = require("lodash");
+const { size, constant } = require("lodash");
 
 const setProduct = async (model, product, context) => {
     const log = context.logger.start("services:products:setStore");
@@ -205,6 +205,37 @@ const getProductByStoreId = async (id, context) => {
     return products;
 
 };
+const ratingReview = async (model, context) => {
+    const log = context.logger.start("services:products:ratingReview");
+    if (!model.productId) {
+        throw new Error(' productId  is required')
+    }
+    const filter = {
+        _id: model.productId,
+        rating: { $eq: { $elemMatch: { userId: model.userId } } }
+    }
+
+    let ratingReview = await db.product.findOne(filter)
+
+    if (ratingReview != null || ratingReview != undefined) {
+
+        const update = {
+            $addToSet: { rating: { userId: model.userId, rating: model.rating, customerName: model.customerName, review: model.review } }
+        }
+        ratingReview = await db.product.findOneAndUpdate(filter, update)
+
+    } else {
+
+        const update = {
+            $push: { rating: { userId: model.userId, rating: model.rating, customerName: model.customerName, review: model.review } }
+        }
+        ratingReview = await db.product.findOneAndUpdate(filter, update)
+    }
+
+
+    return ratingReview;
+
+};
 
 exports.add = add;
 exports.search = search;
@@ -215,3 +246,4 @@ exports.imageUpload = imageUpload;
 exports.makeFavOrUnFav = makeFavOrUnFav;
 exports.getFavProducts = getFavProducts;
 exports.getProductByStoreId = getProductByStoreId;
+exports.ratingReview = ratingReview;

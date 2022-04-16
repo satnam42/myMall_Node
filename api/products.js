@@ -131,6 +131,18 @@ const getProductByStoreId = async (req, res) => {
         return response.failure(res, err.message);
     }
 };
+const ratingReview = async (req, res) => {
+    const log = req.context.logger.start(`api:products:ratingReview`);
+    try {
+        const products = await service.ratingReview(req.body, req.context);
+        log.end();
+        return response.data(res, products);
+    } catch (err) {
+        log.error(err);
+        log.end();
+        return response.failure(res, err.message);
+    }
+};
 
 
 
@@ -143,3 +155,4 @@ exports.getProducts = getProducts;
 exports.favOrUnFav = favOrUnFav;
 exports.favProducts = favProducts;
 exports.getProductByStoreId = getProductByStoreId;
+exports.ratingReview = ratingReview;

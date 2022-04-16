@@ -21,6 +21,22 @@ const product = mongoose.Schema({
         key: { type: String },
         value: { type: String }
     }],
+    rating: [{
+        rating: {
+            type: Number,
+            // required: [true, 'A rating is required.'],
+            min: [1, 'A minimum rating of "1" is required.'],
+            max: [5, '"5" is the maximum rating.']
+        },
+        review: { type: String, default: "", },
+        postedOn: { type: Date, default: Date.now },
+        userId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'store',
+
+        },
+        customerName: { type: String }
+    }],
     store: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'store',

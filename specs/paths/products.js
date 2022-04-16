@@ -19,7 +19,8 @@ module.exports = [{
                 schema: {
                     $ref: "#/definitions/productCreate"
                 }
-            }],
+            }
+        ],
         responses: {
             default: {
                 description: "Unexpected error",
@@ -281,6 +282,39 @@ module.exports = [{
                 description: "store id",
                 required: true
             },],
+        responses: {
+            default: {
+                description: "Unexpected error",
+                schema: {
+                    $ref: "#/definitions/Error"
+                }
+            }
+        }
+    }
+},
+{
+    url: "/ratingReview",
+    post: {
+        summary: "add rating and Review",
+        description: "add rating and Review",
+        parameters: [
+            // {
+            //     in: "header",
+            //     name: "x-access-token",
+            //     description: "token to access api",
+            //     required: true,
+            //     type: "string"
+            // },
+            {
+                in: "body",
+                name: "body",
+                description: "add product model",
+                required: true,
+                schema: {
+                    $ref: "#/definitions/ratingReview"
+                }
+            }
+        ],
         responses: {
             default: {
                 description: "Unexpected error",

@@ -186,11 +186,18 @@ const configure = (app, logger) => {
         permit.context.builder,
         api.products.favOrUnFav
     );
+
+    app.post("/api/products/ratingReview",
+        permit.context.validateToken,
+        api.products.ratingReview
+    );
+
     app.get(
         "/api/products/favList/:id",
         permit.context.builder,
         api.products.favProducts
     );
+
     app.get(
         "/api/products/byStoreId/:id",
         permit.context.builder,
