@@ -49,7 +49,7 @@ module.exports = [{
             description: "Model of store update",
             required: true,
             schema: {
-                $ref: "#/definitions/createStore"
+                $ref: "#/definitions/storeCreate"
             }
         }
         ],

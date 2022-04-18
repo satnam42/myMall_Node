@@ -6,17 +6,31 @@ const setStore = async (model, store, context) => {
     if (model.name !== "string" && model.name !== undefined) {
         store.name = model.name;
     }
-
     if (model.description !== "string" && model.description !== undefined) {
         store.description = model.description;
     }
-
     if (model.slogan !== "string" && model.slogan !== undefined) {
         store.slogan = model.slogan;
     }
-
+    if (model.priceRange.from !== "string" && model.priceRange.from !== undefined
+        && model.priceRange.to !== "string" && model.priceRange.to !== undefined) {
+        store.priceRange = model.priceRange;
+    }
     if (model.location !== "string" && model.location !== undefined) {
         store.location = model.location;
+    }
+    if (model.scotNo !== "string" && model.scotNo !== undefined) {
+        store.scotNo = model.scotNo;
+    }
+    if (model.timing.from !== "string" && model.timing.from !== undefined
+        && model.timing.to !== "string" && model.timing.to !== undefined) {
+        store.timing = model.timing;
+    }
+    if (model.zipCode !== "string" && model.zipCode !== undefined) {
+        store.zipCode = model.zipCode;
+    }
+    if (model.contactNo !== "string" && model.contactNo !== undefined) {
+        store.contactNo = model.contactNo;
     }
     log.end();
     await store.save();
