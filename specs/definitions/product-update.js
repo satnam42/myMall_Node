@@ -17,6 +17,9 @@ module.exports = [
             storeId: {
                 type: "string"
             },
+            discount: {
+                type: "string"
+            },
             // deviceToken: {
             //     type: "string"
             // },

@@ -8,7 +8,7 @@ const product = mongoose.Schema({
         createdAt: { type: Date, default: Date.now() }
     }],
     masterPrice: { type: Number, required: true },
-    productUrl: { type: String },
+    discount: { type: String },
     colors: [{
         name: { type: String },
         price: { type: String }
