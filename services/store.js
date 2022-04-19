@@ -142,7 +142,7 @@ const imageUpload = async (id, type, files, context) => {
         let fileName = files[0].filename.replace(/ /g, '')
         if (files == undefined && files.length < 0) throw new Error("image is required");
         if (store.logo != "") {
-            const path = file.destination + '/' + store.logo
+            const path = files[0].destination + '/' + store.logo
             try {
                 fs.unlinkSync(path);
                 console.log(`image successfully removed from ${path}`);
@@ -157,7 +157,7 @@ const imageUpload = async (id, type, files, context) => {
         let fileName = files[0].filename.replace(/ /g, '')
         if (files == undefined && files.length < 0) throw new Error("image is required");
         if (store.logo != "") {
-            const path = file.destination + '/' + store.banner
+            const path = files[0].destination + '/' + store.banner
             try {
                 fs.unlinkSync(path);
                 console.log(`image successfully removed from ${path}`);
