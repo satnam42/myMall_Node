@@ -20,6 +20,11 @@ const store = mongoose.Schema({
         from: { type: String, default: '' },
         to: { type: String, default: '' },
     },
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "category",
+        required: true
+    },
     slogan: { type: String, default: "" },
 
     logo: { type: String, default: "" },

@@ -32,6 +32,20 @@ const getProductById = async (req, res) => {
         return response.failure(res, err.message);
     }
 };
+const getSimilarProduct = async (req, res) => {
+    const log = req.context.logger.start(`api:products:getSimilarProduct`);
+    try {
+        const product = await service.getSimilarProduct(req.query.id, req.context);
+        const message = "Current Product";
+        log.end();
+        // return response.success(res, message, storeMapper.toModel(product));
+        return response.success(res, message, productMapper.toModel(product));
+    } catch (err) {
+        log.error(err);
+        log.end();
+        return response.failure(res, err.message);
+    }
+};
 
 const getProducts = async (req, res) => {
     const log = req.context.logger.start(`api:products:getProducts`);
@@ -156,3 +170,4 @@ exports.favOrUnFav = favOrUnFav;
 exports.favProducts = favProducts;
 exports.getProductByStoreId = getProductByStoreId;
 exports.ratingReview = ratingReview;
+exports.getSimilarProduct = getSimilarProduct;

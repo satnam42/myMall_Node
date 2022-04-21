@@ -209,6 +209,11 @@ const configure = (app, logger) => {
         permit.context.validateToken,
         api.products.search
     );
+    app.get(
+        "/api/products/similarProduct",
+        permit.context.validateToken,
+        api.products.getSimilarProduct
+    );
 
     app.put(
         "/api/products/imageUpload/:productId/:type",
@@ -222,23 +227,23 @@ const configure = (app, logger) => {
         api.categories.createCategory
     );
 
-    app.post(
-        "/api/categories/createSubCategory",
-        permit.context.builder,
-        api.categories.createSubCategory
-    );
+    // app.post(
+    //     "/api/categories/createSubCategory",
+    //     permit.context.builder,
+    //     api.categories.createSubCategory
+    // );
 
-    app.post(
+    app.get(
         "/api/categories/getCategories",
         permit.context.builder,
         api.categories.getCategories
     );
 
-    app.delete(
-        "/api/categories/delete/:id",
-        permit.context.builder,
-        api.categories.remove
-    );
+    // app.delete(
+    //     "/api/categories/delete/:id",
+    //     permit.context.builder,
+    //     api.categories.remove
+    // );
 
     /* Cart Section */
 

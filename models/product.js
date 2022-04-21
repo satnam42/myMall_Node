@@ -7,6 +7,11 @@ const product = mongoose.Schema({
         name: { type: String, default: "" },
         createdAt: { type: Date, default: Date.now() }
     }],
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "category",
+        required: true
+    },
     masterPrice: { type: Number, required: true },
     discount: { type: String },
     colors: [{

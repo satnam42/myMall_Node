@@ -33,6 +33,9 @@ module.exports = [
             city: {
                 type: "string"
             },
+            categoryId: {
+                type: "string"
+            },
             scotNo: {
                 type: "string"
             },

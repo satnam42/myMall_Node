@@ -20,6 +20,9 @@ module.exports = [
             discount: {
                 type: "string"
             },
+            categoryId: {
+                type: "string"
+            },
             // deviceToken: {
             //     type: "string"
             // },

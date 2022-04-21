@@ -43,7 +43,7 @@ const setProduct = async (model, product, context) => {
 //add product
 
 const buildStore = async (model, context) => {
-    const { name, description, masterPrice, productUrl, discount, storeId, feature, size, colors } = model;
+    const { name, description, masterPrice, categoryId, productUrl, discount, storeId, feature, size, colors } = model;
     const log = context.logger.start(`services:products:buildProduct${model}`);
     const product = await new db.product({
         name: name,
@@ -52,6 +52,7 @@ const buildStore = async (model, context) => {
         productUrl: productUrl,
         store: storeId,
         feature: feature,
+        category: categoryId,
         discount: discount,
         size: size,
         colors: colors
@@ -82,6 +83,18 @@ const getProductById = async (id, context) => {
         throw new Error("product id is required");
     }
     let product = await db.product.findById(id)
+    if (!product) {
+        throw new Error("product not found");
+    }
+    log.end();
+    return product;
+};
+const getSimilarProduct = async (categoryId, context) => {
+    const log = context.logger.start(`services:products:getSimilarProduct`);
+    if (!categoryId) {
+        throw new Error("categoryId  is required");
+    }
+    let product = await db.product.find({ category: categoryId })
     if (!product) {
         throw new Error("product not found");
     }
@@ -260,3 +273,4 @@ exports.makeFavOrUnFav = makeFavOrUnFav;
 exports.getFavProducts = getFavProducts;
 exports.getProductByStoreId = getProductByStoreId;
 exports.ratingReview = ratingReview;
+exports.getSimilarProduct = getSimilarProduct;

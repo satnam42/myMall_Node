@@ -71,6 +71,30 @@ module.exports = [{
         }
     }
 },
+{
+    url: "/getSimilarProduct",
+    put: {
+        summary: "getSimilarProduct",
+        description: "getSimilarProduct",
+        parameters: [
+            {
+                in: "query",
+                type: "string",
+                categoryId: "categoryId",
+                description: "categoryId",
+                required: true
+            },
+        ],
+        responses: {
+            default: {
+                description: "Unexpected error",
+                schema: {
+                    $ref: "#/definitions/Error"
+                }
+            }
+        }
+    }
+},
 
 {
     url: "/getProductById/{id}",
