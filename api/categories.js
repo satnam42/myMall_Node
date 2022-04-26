@@ -16,24 +16,11 @@ const createCategory = async (req, res) => {
     }
 };
 
-const createSubCategory = async (req, res) => {
-    const log = req.context.logger.start(`api:categories:createSubCategory`);
-    try {
-        const category = await service.createSubCategory(req.files, req.body, req.context);
-
-        log.end();
-        return response.data(res, category);
-    } catch (err) {
-        log.error(err);
-        log.end();
-        return response.failure(res, err.message);
-    }
-};
 
 const getCategories = async (req, res) => {
     const log = req.context.logger.start(`api:categories:getCategories`);
     try {
-        const categories = await service.getCategories(req.body, req.context);
+        const categories = await service.getCategories(req.context);
         const message = "categories feched Successfully";
         log.end();
         return response.data(res, message, categories);
@@ -59,6 +46,5 @@ const remove = async (req, res) => {
 };
 
 exports.createCategory = createCategory;
-exports.createSubCategory = createSubCategory;
 exports.getCategories = getCategories;
 exports.remove = remove;

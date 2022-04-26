@@ -51,6 +51,12 @@ module.exports = [
             contactNo: {
                 type: "string"
             },
+            storeType: {
+                type: "string"
+            },
+            address: {
+                type: "string"
+            },
             location: {
                 properties: {
                     type: 'array',

@@ -34,6 +34,8 @@ const store = mongoose.Schema({
         name: { type: String, default: "" },
         createdAt: { type: Date, default: Date.now() }
     }],
+    address: { type: String, default: "" },
+    storeType: { type: String, default: "" },
     scotNo: { type: String, default: "" },
     city: { type: String, default: "" },
     state: { type: String, default: "" },
