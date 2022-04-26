@@ -23,6 +23,9 @@ module.exports = [
             categoryId: {
                 type: "string"
             },
+            brand: {
+                type: "string"
+            },
             // deviceToken: {
             //     type: "string"
             // },

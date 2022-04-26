@@ -14,6 +14,9 @@ module.exports = [
             productUrl: {
                 type: "string"
             },
+            brand: {
+                type: "string"
+            },
             storeId: {
                 type: "string"
             },

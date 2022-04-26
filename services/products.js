@@ -13,6 +13,9 @@ const setProduct = async (model, product, context) => {
     if (model.description !== "string" && model.description !== undefined) {
         product.description = model.description;
     }
+    if (model.brand !== "string" && model.brand !== undefined) {
+        product.brand = model.brand;
+    }
 
     if (model.productUrl !== "string" && model.productUrl !== undefined) {
         product.productUrl = model.productUrl;
@@ -43,7 +46,7 @@ const setProduct = async (model, product, context) => {
 //add product
 
 const buildStore = async (model, context) => {
-    const { name, description, masterPrice, categoryId, productUrl, discount, storeId, feature, size, colors } = model;
+    const { name, description, masterPrice, brand, categoryId, productUrl, discount, storeId, feature, size, colors } = model;
     const log = context.logger.start(`services:products:buildProduct${model}`);
     const product = await new db.product({
         name: name,
@@ -52,6 +55,7 @@ const buildStore = async (model, context) => {
         productUrl: productUrl,
         store: storeId,
         feature: feature,
+        brand: brand,
         category: categoryId,
         discount: discount,
         size: size,

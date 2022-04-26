@@ -14,6 +14,7 @@ const product = mongoose.Schema({
     },
     masterPrice: { type: Number, required: true },
     discount: { type: String },
+    brand: { type: String, default: "" },
     colors: [{
         name: { type: String },
         price: { type: String }
