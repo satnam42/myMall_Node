@@ -13,7 +13,10 @@ exports.toModel = entity => {
         colors: entity.colors,
         size: entity.size,
         feature: entity.feature,
+        discount: entity.discount,
+        brand: entity.brand,
         store: entity.store,
+        rating: entity.rating,
     };
     if (entity.gallery && entity.gallery.length > 0) {
         for (let index = 0; index < entity.gallery.length; index++) {
