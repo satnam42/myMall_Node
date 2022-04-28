@@ -280,6 +280,7 @@ const configure = (app, logger) => {
     app.post(
         "/api/carts/addAddress",
         permit.context.builder,
+        validator.address.create,
         api.carts.addAddress
     );
 
@@ -328,6 +329,25 @@ const configure = (app, logger) => {
         permit.context.builder,
         api.notifications.dealOfTheDay
     );
+
+
+    app.post("/api/addresses/add",
+        permit.context.validateToken,
+        api.addresses.create
+    );
+
+    app.put(
+        "/api/addresses/update/:id",
+        permit.context.validateToken,
+        api.addresses.update
+    );
+
+    app.get(
+        "/api/addresses/byUser/:id",
+        permit.context.validateToken,
+        api.addresses.getUserById
+    );
+
 
     log.end();
 

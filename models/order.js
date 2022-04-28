@@ -6,6 +6,11 @@ const order = mongoose.Schema({
         ref: 'user',
         required: true
     },
+    address: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'address',
+        required: true
+    },
     // cart: {
     //     cartIds: [
     //         {
