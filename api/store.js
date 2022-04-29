@@ -34,6 +34,19 @@ const getStoreById = async (req, res) => {
         return response.failure(res, err.message);
     }
 };
+const getStoreByCatId = async (req, res) => {
+    const log = req.context.logger.start(`api:store:getStoreByCatId`);
+    try {
+        const store = await service.getStoreByCatId(req.params.id, req.context);
+        log.end();
+        // return response.success(res, message, storeMapper.toModel(store));
+        return response.data(res, store);
+    } catch (err) {
+        log.error(err);
+        log.end();
+        return response.failure(res, err.message);
+    }
+};
 
 
 
@@ -142,3 +155,4 @@ exports.favOrUnFav = favOrUnFav;
 exports.favStores = favStores;
 exports.list = list;
 exports.myStores = myStores;
+exports.getStoreByCatId = getStoreByCatId;

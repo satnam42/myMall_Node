@@ -150,6 +150,11 @@ const configure = (app, logger) => {
         permit.context.validateToken,
         api.store.myStores
     );
+    app.get(
+        "/api/store/byCatId/:id",
+        permit.context.builder,
+        api.store.getStoreByCatId
+    );
 
     app.get(
         "/api/store/list",
