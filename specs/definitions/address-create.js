@@ -8,6 +8,9 @@ module.exports = [
             fullName: {
                 type: "string"
             },
+            mobileNo: {
+                type: "string"
+            },
             area: {
                 type: "string"
             },

@@ -331,7 +331,7 @@ const configure = (app, logger) => {
     );
 
 
-    app.post("/api/addresses/add",
+    app.post("/api/addresses/create",
         permit.context.validateToken,
         api.addresses.create
     );
