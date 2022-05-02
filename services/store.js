@@ -97,6 +97,18 @@ const getStoreById = async (id, context) => {
     log.end();
     return store;
 };
+const getStoreByCatId = async (id, context) => {
+    const log = context.logger.start(`services:stores:getStoreByCatId`);
+    if (!id) {
+        throw new Error("category id is required");
+    }
+    let stores = await db.store.find({ category: id })
+    if (!stores) {
+        throw new Error("store not found");
+    }
+    log.end();
+    return stores;
+};
 
 const myStores = async (id, context) => {
     const log = context.logger.start(`services:stores:myStores`);
@@ -241,3 +253,4 @@ exports.makeFavOrUnFav = makeFavOrUnFav;
 exports.getFavStores = getFavStores;
 exports.getAllStores = getAllStores;
 exports.myStores = myStores;
+exports.getStoreByCatId = getStoreByCatId;

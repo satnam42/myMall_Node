@@ -7,6 +7,7 @@ const address = mongoose.Schema({
         required: true
     },
     fullName: { type: String, default: "" },
+    mobileNo: { type: String, default: "" },
     area: { type: String, default: "" },
     buildingNo: { type: String, default: "" },
     city: { type: String, default: "" },

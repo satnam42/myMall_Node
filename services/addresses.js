@@ -42,7 +42,7 @@ const setAddress = async (model, address, context) => {
 //register address
 
 const buildAddress = async (model, context) => {
-    const { userId, fullName, area, buildingNo, city, country, state, pinCode, street, isDefault } = model;
+    const { userId, fullName, area, mobileNo, buildingNo, city, country, state, pinCode, street, isDefault } = model;
     const log = context.logger.start(`services:addresses:buildAddress${model}`);
     const address = await new db.address({
         fullName: fullName,
@@ -51,6 +51,7 @@ const buildAddress = async (model, context) => {
         buildingNo: buildingNo,
         city: city,
         country: country,
+        mobileNo: mobileNo,
         state: state,
         pinCode: pinCode,
         street: street,

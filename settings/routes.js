@@ -150,6 +150,11 @@ const configure = (app, logger) => {
         permit.context.validateToken,
         api.store.myStores
     );
+    app.get(
+        "/api/store/byCatId/:id",
+        permit.context.builder,
+        api.store.getStoreByCatId
+    );
 
     app.get(
         "/api/store/list",
@@ -331,7 +336,7 @@ const configure = (app, logger) => {
     );
 
 
-    app.post("/api/addresses/add",
+    app.post("/api/addresses/create",
         permit.context.validateToken,
         api.addresses.create
     );
