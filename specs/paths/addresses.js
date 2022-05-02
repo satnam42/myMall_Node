@@ -101,6 +101,36 @@ module.exports = [
             }
         }
     },
+    {
+        url: "/byId/{id}",
+        get: {
+            summary: "get address by id",
+            description: "get address by id",
+            parameters: [
+                {
+                    in: "header",
+                    name: "x-access-token",
+                    description: "token to access api",
+                    required: true,
+                    type: "string"
+                },
+                {
+                    in: "path",
+                    type: "string",
+                    name: "id",
+                    description: "address id",
+                    required: true
+                },],
+            responses: {
+                default: {
+                    description: "Unexpected error",
+                    schema: {
+                        $ref: "#/definitions/Error"
+                    }
+                }
+            }
+        }
+    },
 
 
 ];

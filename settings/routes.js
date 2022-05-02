@@ -348,6 +348,12 @@ const configure = (app, logger) => {
         api.addresses.getUserById
     );
 
+    app.get(
+        "/api/addresses/byId/:id",
+        permit.context.validateToken,
+        api.addresses.getAddressById
+    );
+
 
     log.end();
 

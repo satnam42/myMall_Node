@@ -81,6 +81,18 @@ const getUserById = async (id, context) => {
     log.end();
     return addresses;
 };
+const getAddressById = async (id, context) => {
+    const log = context.logger.start(`services:addresses:getAddressById`);
+    if (!id) {
+        throw new Error(" id is required");
+    }
+    const address = await db.address.findById(id)
+    if (!address) {
+        throw new Error("address not found");
+    }
+    log.end();
+    return address;
+};
 
 const update = async (id, model, context) => {
     const log = context.logger.start(`services:addresses:update`);
@@ -94,11 +106,7 @@ const update = async (id, model, context) => {
 };
 
 
-
-
-
-
-
 exports.create = create;
 exports.getUserById = getUserById;
 exports.update = update;
+exports.getAddressById = getAddressById;
