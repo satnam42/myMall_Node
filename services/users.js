@@ -84,6 +84,7 @@ const login = async (model, context) => {
     user.updatedOn = new Date();
     await user.save();
     user.token = token;
+    user.fcmToken =model.fcmToken;
     log.end();
     return user;
 };
