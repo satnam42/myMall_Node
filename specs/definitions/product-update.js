@@ -17,6 +17,10 @@ module.exports = [
             brand: {
                 type: "string"
             },
+            isOnDiscount: {
+                type: "boolean",
+                default: false
+            },
             storeId: {
                 type: "string"
             },

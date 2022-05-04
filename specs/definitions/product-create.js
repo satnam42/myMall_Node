@@ -26,6 +26,10 @@ module.exports = [
             brand: {
                 type: "string"
             },
+            isOnDiscount: {
+                type: "boolean",
+                default: false
+            },
             // deviceToken: {
             //     type: "string"
             // },
