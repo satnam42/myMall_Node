@@ -39,7 +39,7 @@ const product = mongoose.Schema({
         postedOn: { type: Date, default: Date.now },
         userId: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'store',
+            ref: 'user',
 
         },
         customerName: { type: String }
