@@ -38,13 +38,13 @@ const dealOfTheDay = async (model, context) => {
     if (!model.deviceToken) {
         throw new Error('deviceToken is required')
     }
-    let date = new Date();
-    let products = await db.product.find({
-        isOnDiscount: true, updatedAt: {
-            $gte: date,
-            $lte: moment(date).endOf('day')
-        }
-    }).populate('store')
+    // let date = new Date();
+    // let products = await db.product.find({
+    //     isOnDiscount: true, updatedAt: {
+    //         $gte: date,
+    //         $lte: moment(date).endOf('day')
+    //     }
+    // }).populate('store')
     // let modal = {}
     // modal.channelId = body.channelName
     // modal.isPublisher = false
@@ -81,9 +81,9 @@ const dealOfTheDay = async (model, context) => {
         token: registrationToken
     };
     const res = await admin.messaging().send(message)
-    log.info('messaging', res)
+    // log.info('messaging', res)
     log.end()
-    return products
+    return res
 
 }
 

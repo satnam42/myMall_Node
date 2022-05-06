@@ -93,7 +93,7 @@ const search = async (req, res) => {
     }
 
 };
-;
+
 
 const uploadImage = async (req, res) => {
     const log = req.context.logger.start(`api:products:uploadImage`);
@@ -157,9 +157,24 @@ const ratingReview = async (req, res) => {
         return response.failure(res, err.message);
     }
 };
+const dealOfTheDay = async (req, res) => {
+    const log = req.context.logger.start("api:products:dealOfTheDAy");
+    try {
+        const notification = await service.dealOfTheDay(req.context);
+        log.end();
+        return response.data(res, notification);
+        // return response.authorized(res, message, user, user.token);
+    }
+    catch (err) {
+        log.error(err);
+        log.end();
+        return response.failure(res, err.message);
+    }
+
+};
 
 
-
+exports.dealOfTheDay = dealOfTheDay;
 exports.add = add;
 exports.search = search;
 exports.getProductById = getProductById;

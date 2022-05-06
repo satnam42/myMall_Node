@@ -226,10 +226,16 @@ const configure = (app, logger) => {
         api.products.uploadImage
     );
 
-    app.post(
-        "/api/categories/createCategory",
+    // app.post(
+    //     "/api/categories/createCategory",
+    //     permit.context.builder,
+    //     api.categories.createCategory
+    // );
+
+    app.get(
+        "/api/products/dealOfTheDay",
         permit.context.builder,
-        api.categories.createCategory
+        api.products.dealOfTheDay
     );
 
     // app.post(

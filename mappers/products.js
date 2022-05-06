@@ -13,6 +13,7 @@ exports.toModel = entity => {
         colors: entity.colors,
         size: entity.size,
         feature: entity.feature,
+        categoryId: entity.category,
         discount: entity.discount,
         brand: entity.brand,
         store: entity.store,

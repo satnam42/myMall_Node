@@ -211,6 +211,21 @@ const makeFavOrUnFav = async (model, context) => {
     }
 
 };
+const dealOfTheDay = async (context) => {
+    const log = context.logger.start(`services:products:dealOfTheDay`);
+    let date = new Date();
+    let products = await db.product.find({
+        isOnDiscount: true, updatedAt: {
+            $gte: date,
+            $lte: moment(date).endOf('day')
+        }
+    }).populate('store')
+
+    log.end()
+    return products
+
+}
+
 const getFavProducts = async (id, context) => {
     const log = context.logger.start("services:products:makeFavOrUnFav");
     if (!id) {
@@ -282,3 +297,4 @@ exports.getFavProducts = getFavProducts;
 exports.getProductByStoreId = getProductByStoreId;
 exports.ratingReview = ratingReview;
 exports.getSimilarProduct = getSimilarProduct;
+exports.dealOfTheDay = dealOfTheDay;
