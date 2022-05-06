@@ -73,7 +73,7 @@ module.exports = [{
 },
 {
     url: "/getSimilarProduct",
-    put: {
+    get: {
         summary: "getSimilarProduct",
         description: "getSimilarProduct",
         parameters: [
