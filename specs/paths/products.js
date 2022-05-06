@@ -72,16 +72,16 @@ module.exports = [{
     }
 },
 {
-    url: "/getSimilarProduct",
+    url: "/similarProduct",
     get: {
-        summary: "getSimilarProduct",
-        description: "getSimilarProduct",
+        summary: "similarProduct",
+        description: "similarProduct",
         parameters: [
             {
                 in: "query",
                 type: "string",
                 categoryId: "categoryId",
-                description: "categoryId",
+                description: "getSimilarProduct ",
                 required: true
             },
         ],

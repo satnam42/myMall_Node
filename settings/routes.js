@@ -216,7 +216,7 @@ const configure = (app, logger) => {
     );
     app.get(
         "/api/products/similarProduct",
-        permit.context.validateToken,
+        permit.context.builder,
         api.products.getSimilarProduct
     );
 
