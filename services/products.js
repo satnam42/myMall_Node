@@ -102,12 +102,12 @@ const getSimilarProduct = async (categoryId, context) => {
     if (!categoryId) {
         throw new Error("categoryId  is required");
     }
-    let product = await db.product.find({ category: categoryId })
-    if (!product) {
+    let products = await db.product.find({ category: categoryId })
+    if (!products) {
         throw new Error("product not found");
     }
     log.end();
-    return product;
+    return products;
 };
 
 const getProducts = async (context) => {

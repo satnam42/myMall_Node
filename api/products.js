@@ -35,11 +35,11 @@ const getProductById = async (req, res) => {
 const getSimilarProduct = async (req, res) => {
     const log = req.context.logger.start(`api:products:getSimilarProduct`);
     try {
-        const product = await service.getSimilarProduct(req.query.categoryId, req.context);
+        const products = await service.getSimilarProduct(req.query.categoryId, req.context);
         const message = "Current Product";
         log.end();
         // return response.success(res, message, storeMapper.toModel(product));
-        return response.success(res, message, productMapper.toModel(product));
+        return response.success(res, message, productMapper.toSearchModel(products));
     } catch (err) {
         log.error(err);
         log.end();
