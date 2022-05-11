@@ -93,7 +93,21 @@ const search = async (req, res) => {
     }
 
 };
-;
+const getRecentSearch = async (req, res) => {
+
+    const log = req.context.logger.start(`api:store:search:${req.query.name}`);
+    try {
+        const store = await service.getRecentSearch(req.context);
+        log.end();
+        return response.data(res, store);
+    } catch (err) {
+        log.error(err);
+        log.end();
+        return response.failure(res, err.message);
+    }
+
+};
+
 
 const uploadImage = async (req, res) => {
     const log = req.context.logger.start(`api:store:uploadImage`);
@@ -156,3 +170,4 @@ exports.favStores = favStores;
 exports.list = list;
 exports.myStores = myStores;
 exports.getStoreByCatId = getStoreByCatId;
+exports.getRecentSearch = getRecentSearch;

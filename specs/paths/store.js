@@ -229,6 +229,37 @@ module.exports = [{
     }
 },
 {
+    url: "/recentSearch",
+    get: {
+        summary: "recentSearch",
+        description: "recent Search store",
+        parameters: [
+            // {
+            //     in: "header",
+            //     name: "x-access-token",
+            //     description: "token to access api",
+            //     required: true,
+            //     type: "string"
+            // },
+            // {
+            //     in: "query",
+            //     type: "string",
+            //     name: "name",
+            //     description: "store name",
+            //     required: true
+            // },
+        ],
+        responses: {
+            default: {
+                description: "Unexpected error",
+                schema: {
+                    $ref: "#/definitions/Error"
+                }
+            }
+        }
+    }
+},
+{
     url: "/makeFavOrUnfav",
     post: {
         summary: "makeFavOrUnfav",

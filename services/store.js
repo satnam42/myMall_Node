@@ -38,6 +38,9 @@ const setStore = async (model, store, context) => {
     if (model.contactNo !== "string" && model.contactNo !== undefined) {
         store.contactNo = model.contactNo;
     }
+    if (model.isRecentlySearch) {
+        store.recentSearch = Date.now()
+    }
     log.end();
     await store.save();
     return store;
@@ -142,6 +145,13 @@ const search = async (name, context) => {
     return stores
 };
 
+const getRecentSearch = async (context) => {
+    const log = context.logger.start(`services:stores:search`);
+    const stores = await db.store.find({}).sort({ recentSearch: -1 }).limit(5)
+    log.end()
+    return stores
+};
+
 const imageUpload = async (id, type, files, context) => {
     const log = context.logger.start(`services:stores:imageUpload`);
     if (!id) {
@@ -206,7 +216,6 @@ const buildFav = async (model, context) => {
     log.end();
     return favourite;
 };
-
 const makeFavOrUnFav = async (model, context) => {
     const log = context.logger.start("services:stores:makeFavOrUnFav");
 
@@ -244,8 +253,10 @@ const getAllStores = async (context) => {
     log.end();
     return stores;
 };
+
 exports.create = create;
 exports.search = search;
+exports.getRecentSearch = getRecentSearch;
 exports.getStoreById = getStoreById;
 exports.update = update;
 exports.imageUpload = imageUpload;

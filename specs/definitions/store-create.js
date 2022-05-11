@@ -57,6 +57,10 @@ module.exports = [
             address: {
                 type: "string"
             },
+            isRecentlySearch: {
+                type: "boolean",
+                default: false
+            },
             location: {
                 properties: {
                     type: 'array',

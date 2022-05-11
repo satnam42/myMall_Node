@@ -130,6 +130,11 @@ const configure = (app, logger) => {
         permit.context.validateToken,
         api.store.search
     );
+    app.get(
+        "/api/store/recentSearch",
+        permit.context.builder,
+        api.store.getRecentSearch
+    );
 
     app.put(
         "/api/store/imageUpload/:storeId/:type",
