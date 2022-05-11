@@ -25,18 +25,18 @@ const setProduct = async (model, product, context) => {
         product.discount = model.discount;
     }
 
-    if (model.feature.length > 0) {
+    if (model.feature && model.feature.length > 0) {
         product.feature = model.feature;
     }
     if (model.isOnDiscount == true || model.isOnDiscount == false) {
         product.isOnDiscount = model.isOnDiscount;
     }
 
-    if (model.size.length > 0) {
+    if (model.size && model.size.length > 0) {
         product.size = model.size;
     }
 
-    if (model.colors.length > 0) {
+    if (model.colors && model.colors.length > 0) {
         product.colors = model.colors;
     }
 
