@@ -30,6 +30,7 @@ const store = mongoose.Schema({
     logo: { type: String, default: "" },
     banner: { type: String, default: "" },
     webSiteUrl: { type: String, default: "" },
+    deliveryChangers: { type: String, default: "" },
     gallery: [{
         name: { type: String, default: "" },
         createdAt: { type: Date, default: Date.now() }

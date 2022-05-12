@@ -38,6 +38,12 @@ const setStore = async (model, store, context) => {
     if (model.contactNo !== "string" && model.contactNo !== undefined) {
         store.contactNo = model.contactNo;
     }
+    if (model.webSiteUrl !== "string" && model.webSiteUrl !== undefined) {
+        store.webSiteUrl = model.webSiteUrl;
+    }
+    if (model.deliveryChangers !== "string" && model.deliveryChangers !== undefined) {
+        store.deliveryChangers = model.deliveryChangers;
+    }
     if (model.isRecentlySearch) {
         store.recentSearch = Date.now()
     }
@@ -49,7 +55,7 @@ const setStore = async (model, store, context) => {
 //register store
 
 const buildStore = async (model, context) => {
-    const { name, description, slogan, address, storeType, location, categoryId, zipCode, landmark, state, city, scotNo, priceRange, timing, userId, contactNo } = model;
+    const { name, description, slogan, address, storeType, location, webSiteUrl, deliveryChangers, categoryId, zipCode, landmark, state, city, scotNo, priceRange, timing, userId, contactNo } = model;
     const log = context.logger.start(`services:stores:buildStore${model}`);
     const store = await new db.store({
         name: name,
@@ -64,6 +70,8 @@ const buildStore = async (model, context) => {
         landmark: landmark,
         address: address,
         storeType: storeType,
+        webSiteUrl: webSiteUrl,
+        deliveryChangers: deliveryChangers,
         slogan: slogan,
         zipCode, zipCode,
         contactNo, contactNo,
@@ -93,7 +101,7 @@ const getStoreById = async (id, context) => {
     if (!id) {
         throw new Error("store id is required");
     }
-    let store = await db.store.findById(id)
+    let store = await db.store.findById(id).populate('category')
     if (!store) {
         throw new Error("store not found");
     }
