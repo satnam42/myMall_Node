@@ -42,6 +42,12 @@ module.exports = [
             state: {
                 type: "string"
             },
+            webSiteUrl: {
+                type: "string"
+            },
+            deliveryChangers: {
+                type: "string"
+            },
             landmark: {
                 type: "string"
             },
