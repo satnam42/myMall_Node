@@ -46,7 +46,7 @@ module.exports = [
                 type: "string"
             },
             deliveryCharges: {
-                type: "string"
+                type: "number"
             },
             landmark: {
                 type: "string"
