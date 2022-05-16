@@ -90,7 +90,7 @@ const getProductById = async (id, context) => {
     if (!id) {
         throw new Error("product id is required");
     }
-    let product = await db.product.findById(id)
+    let product = await db.product.findById(id).populate("store")
     if (!product) {
         throw new Error("product not found");
     }
@@ -112,7 +112,7 @@ const getSimilarProduct = async (categoryId, context) => {
 
 const getProducts = async (context) => {
     const log = context.logger.start(`services:products:getProducts`);
-    let products = await db.product.find()
+    let products = await db.product.find().populate("store")
     // if (!product) {
     //     throw new Error("product not found");
     // }

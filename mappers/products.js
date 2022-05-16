@@ -18,6 +18,7 @@ exports.toModel = entity => {
         brand: entity.brand,
         store: entity.store,
         rating: entity.rating,
+        deliveryCharges: entity.store.deliveryCharges
     };
     if (entity.gallery && entity.gallery.length > 0) {
         for (let index = 0; index < entity.gallery.length; index++) {
