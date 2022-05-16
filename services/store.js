@@ -41,8 +41,8 @@ const setStore = async (model, store, context) => {
     if (model.webSiteUrl !== "string" && model.webSiteUrl !== undefined) {
         store.webSiteUrl = model.webSiteUrl;
     }
-    if (model.deliveryChangers !== "string" && model.deliveryChangers !== undefined) {
-        store.deliveryChangers = model.deliveryChangers;
+    if (model.deliveryCharges !== "string" && model.deliveryCharges !== undefined) {
+        store.deliveryCharges = model.deliveryCharges;
     }
     if (model.isRecentlySearch) {
         store.recentSearch = Date.now()
@@ -55,7 +55,7 @@ const setStore = async (model, store, context) => {
 //register store
 
 const buildStore = async (model, context) => {
-    const { name, description, slogan, address, storeType, location, webSiteUrl, deliveryChangers, categoryId, zipCode, landmark, state, city, scotNo, priceRange, timing, userId, contactNo } = model;
+    const { name, description, slogan, address, storeType, location, webSiteUrl, deliveryCharges, categoryId, zipCode, landmark, state, city, scotNo, priceRange, timing, userId, contactNo } = model;
     const log = context.logger.start(`services:stores:buildStore${model}`);
     const store = await new db.store({
         name: name,
@@ -71,7 +71,7 @@ const buildStore = async (model, context) => {
         address: address,
         storeType: storeType,
         webSiteUrl: webSiteUrl,
-        deliveryChangers: deliveryChangers,
+        deliveryCharges: deliveryCharges,
         slogan: slogan,
         zipCode, zipCode,
         contactNo, contactNo,

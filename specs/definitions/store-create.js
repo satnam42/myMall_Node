@@ -45,7 +45,7 @@ module.exports = [
             webSiteUrl: {
                 type: "string"
             },
-            deliveryChangers: {
+            deliveryCharges: {
                 type: "string"
             },
             landmark: {
