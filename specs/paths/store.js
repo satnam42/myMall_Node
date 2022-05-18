@@ -319,7 +319,13 @@ module.exports = [{
         summary: "get stores list",
         description: "get all stores list",
         parameters: [
-
+            {
+                in: "header",
+                name: "x-access-token",
+                description: "token to access api",
+                required: false,
+                type: "string"
+            },
 
         ],
         responses: {

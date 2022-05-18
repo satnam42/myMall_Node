@@ -257,7 +257,33 @@ const getFavStores = async (id, context) => {
 };
 const getAllStores = async (context) => {
     const log = context.logger.start(`services:stores:getAllStores`);
-    const stores = await db.store.find();
+    let stores = await db.store.find();
+    if (context?.user?.id) {
+        const favourites = await db.favourite.find({ user: context.user.id }).populate('store')
+        let storeList = []
+        if (favourites.length > 0) {
+            // add fav in store
+            for (var s = 0; s < stores.length; s++) {
+                let store = stores[s]
+                for (var f = 0; f < favourites.length; f++) {
+                    if (store.id == favourites[f].store.id) {
+                        let isExist = await storeList.some((value) => value._id.toString() == store.id); //true
+                        if (!isExist) {
+                            storeList.push({ ...store._doc, isFav: true })
+                        }
+                    }
+
+                }
+                let isExist = await storeList.some((value) => value._id.toString() == store.id); //true
+                if (!isExist) {
+                    storeList.push({ ...store._doc, isFav: false })
+                }
+            }
+        }
+        stores = storeList
+    }
+
+
     log.end();
     return stores;
 };

@@ -56,6 +56,40 @@ const validateToken = async (req, res, next) => {
     return next();
 
 };
+const withTokenOrWithOutToken = async (req, res, next) => {
+    builder(req, res);
+    const log = req.context.logger.start(`permit:auth:validateToken`);
+
+    if (req.headers["x-access-token"]) {
+        const token = req.headers["x-access-token"];
+
+        if (!token) {
+            return response.failure(res, "token is required");
+        }
+
+        const details = auth.extractToken(token, req.context);
+
+        if (details.name === "TokenExpiredError") {
+            return response.unAuthorized(res, "token expired");
+        }
+
+        if (details.name === "JsonWebTokenError") {
+            return response.failure(res, "token is invalid");
+        }
+
+        const user = await db.user.findById(details._id)
+
+        if (!user) {
+            return response.failure(res, "invalid user");
+        }
+
+        req.context.user = user
+    }
+
+    log.end();
+    return next();
+
+};
 
 const requiresToken = async (req, res, next) => {
     builder(req, res);
@@ -90,4 +124,5 @@ const requiresToken = async (req, res, next) => {
 exports.builder = builder;
 exports.requiresToken = requiresToken;
 exports.validateToken = validateToken;
+exports.withTokenOrWithOutToken = withTokenOrWithOutToken;
 // exports.checkPermission = checkPermission;

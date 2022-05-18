@@ -163,7 +163,7 @@ const configure = (app, logger) => {
 
     app.get(
         "/api/store/list",
-        permit.context.builder,
+        permit.context.withTokenOrWithOutToken,
         api.store.list
     );
 
