@@ -279,8 +279,9 @@ const getAllStores = async (context) => {
                     storeList.push({ ...store._doc, isFav: false })
                 }
             }
+            stores = storeList
+
         }
-        stores = storeList
     }
 
 
