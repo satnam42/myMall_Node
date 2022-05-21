@@ -24,7 +24,9 @@ const setProduct = async (model, product, context) => {
     if (model.discount !== "string" && model.discount !== undefined) {
         product.discount = model.discount;
     }
-
+    if (model.offerTime !== "string" && model.offerTime !== undefined) {
+        product.offerTime = model.offerTime;
+    }
     if (model.feature && model.feature.length > 0) {
         product.feature = model.feature;
     }
@@ -49,7 +51,7 @@ const setProduct = async (model, product, context) => {
 //add product
 
 const buildStore = async (model, context) => {
-    const { name, description, masterPrice, brand, isOnDiscount, categoryId, productUrl, discount, storeId, feature, size, colors } = model;
+    const { name, description, masterPrice, offerTime, brand, isOnDiscount, categoryId, productUrl, discount, storeId, feature, size, colors } = model;
     const log = context.logger.start(`services:products:buildProduct${model}`);
     const product = await new db.product({
         name: name,
@@ -58,6 +60,7 @@ const buildStore = async (model, context) => {
         productUrl: productUrl,
         store: storeId,
         feature: feature,
+        offerTime: offerTime,
         isOnDiscount: isOnDiscount,
         brand: brand,
         category: categoryId,

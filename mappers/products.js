@@ -12,6 +12,7 @@ exports.toModel = entity => {
         banner: entity.banner ? `${imageUrl}${entity.banner}` : "",
         colors: entity.colors,
         size: entity.size,
+        offerTime: entity.offerTime,
         feature: entity.feature,
         categoryId: entity.category,
         discount: entity.discount,
