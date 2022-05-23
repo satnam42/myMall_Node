@@ -14,6 +14,9 @@ module.exports = [
             productUrl: {
                 type: "string"
             },
+            offerTime: {
+                type: "date"
+            },
             storeId: {
                 type: "string"
             },

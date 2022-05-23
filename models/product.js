@@ -48,7 +48,8 @@ const product = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'store',
         required: true
-    }
+    },
+    offerTime: { type: Date }
 }, { timestamps: true })
 mongoose.model('product', product)
 module.exports = product;
