@@ -219,7 +219,7 @@ const dealOfTheDay = async (context) => {
             $gte: date,
             $lte: moment(date).endOf('day')
         }
-    }).populate('store')
+    }).populate('store').sort({ updatedAt: -1 })
 
     log.end()
     return products
