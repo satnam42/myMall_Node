@@ -219,7 +219,7 @@ const dealOfTheDay = async (context) => {
     let date = new Date();
     let products = await db.product.find({
         isOnDiscount: true, updatedAt: {
-            $gte: date,
+            // $gte: date,
             $lte: moment(date).endOf('day')
         }
     }).populate('store').sort({ updatedAt: -1 })
