@@ -19,8 +19,8 @@
         "port": 8004
     },
     "stripe": {
-        "public": "pk_test_51J7Hz6GNDoxR4dRyOO1zNMFOmrcVo2VBsz3rH9MAzJ4ywQqDt58j3ekVa8z31URvsvFcGzOXiEvhQJid9rmbUrlQ00qFZBn6n2",
-        "private": "sk_test_51J7Hz6GNDoxR4dRy4DcePJT3nLC7p3rY3iCjmv6uY0wD6q6vTpb82rrzNjK63sGKHuHKd6hgZlooKnolwP06xToH00nxdsgGN9"
+        "public": "pk_test_51KngJVBiDeUCfD4ORTbtSjnKHz70xFjFSmViJDKXwXPu6P0dikWzf5ZbUQw8QOZLmn4wYZXFnDrJr7NcFuC0shXn00u0XzJ9x1",
+        "private": "sk_test_51KngJVBiDeUCfD4OuP4GgjsXniXfys4qP8sz97YgKG836Corgj0H7O3VQuDpDBh9lMl4xsoynccJTAFPS7RAZN6t003nQwTf1C"
     },
     "providers": {},
     "logger": {

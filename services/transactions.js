@@ -1,40 +1,29 @@
 "use strict";
-
 const sk = require('config').get('stripe').private
-// console.log('sk', sk)
 const stripe = require('stripe')(sk)
 
-
-const buildTransaction = async (model, context) => {
+const buildTransaction = async (model, charge, context) => {
     const log = context.logger.start(`services:transactions:buildTransaction${model}`);
-    // const transaction = await new db.transaction({
-    //     // paymentId: model.paymentId,
-    //     product: model.productId,
-    //     receiptUrl: '',
-    //     amount: model.amount,
-    //     status: 'Paid',
-    //     user: context._id,
-    // }).save();
-    const transaction = {
-        // paymentId: model.paymentId,
+    const transaction = await new db.transaction({
+        paymentId: charge.id,
         product: model.productId,
-        receiptUrl: '',
+        receiptUrl: charge.receipt_url,
         amount: model.amount,
-        status: 'Paid',
+        status: charge.status,
         user: context._id,
-    }
+    }).save();
     log.end();
     return transaction;
 };
 
 const create = async (model, context) => {
     const log = context.logger.start("services:transactions:create");
-    // const charge = await stripe.charges.create({
-    //     amount: model.amount,
-    //     currency: 'USD',
-    //     source: model.source,
-    // });
-    const transaction = buildTransaction(model, context);
+    const charge = await stripe.charges.create({
+        amount: model.amount,
+        currency: model.currency,
+        source: model.source,
+    });
+    const transaction = buildTransaction(model, charge, context);
     log.end();
     return transaction;
 
