@@ -6,7 +6,7 @@ const buildTransaction = async (model, charge, context) => {
     const log = context.logger.start(`services:transactions:buildTransaction${model}`);
     const transaction = await new db.transaction({
         paymentId: charge.id,
-        product: model.productId,
+        // product: model.productId,
         receiptUrl: charge.receipt_url,
         amount: model.amount,
         status: charge.status,
