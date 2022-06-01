@@ -63,6 +63,9 @@ module.exports = [
             address: {
                 type: "string"
             },
+            tax: {
+                type: "number"
+            },
             isRecentlySearch: {
                 type: "boolean",
                 default: false

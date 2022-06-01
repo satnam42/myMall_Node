@@ -38,6 +38,9 @@ const setStore = async (model, store, context) => {
     if (model.contactNo !== "string" && model.contactNo !== undefined) {
         store.contactNo = model.contactNo;
     }
+    if (model.tax !== "string" && model.tax !== undefined) {
+        store.tax = model.tax;
+    }
     if (model.webSiteUrl !== "string" && model.webSiteUrl !== undefined) {
         store.webSiteUrl = model.webSiteUrl;
     }
@@ -55,7 +58,7 @@ const setStore = async (model, store, context) => {
 //register store
 
 const buildStore = async (model, context) => {
-    const { name, description, slogan, address, storeType, location, webSiteUrl, deliveryCharges, categoryId, zipCode, landmark, state, city, scotNo, priceRange, timing, userId, contactNo } = model;
+    const { name, description, slogan, address, storeType, tax, location, webSiteUrl, deliveryCharges, categoryId, zipCode, landmark, state, city, scotNo, priceRange, timing, userId, contactNo } = model;
     const log = context.logger.start(`services:stores:buildStore${model}`);
     const store = await new db.store({
         name: name,
@@ -65,6 +68,7 @@ const buildStore = async (model, context) => {
         category: categoryId,
         timing: timing,
         scotNo: scotNo,
+        tax: tax,
         city: city,
         state: state,
         landmark: landmark,

@@ -36,6 +36,7 @@ const store = mongoose.Schema({
         createdAt: { type: Date, default: Date.now() }
     }],
     recentSearch: { type: Date },
+    tax: { type: Number },
     address: { type: String, default: "" },
     storeType: { type: String, default: "" },
     scotNo: { type: String, default: "" },

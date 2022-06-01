@@ -5,9 +5,7 @@ module.exports = [
             userId: {
                 type: "string"
             },
-            // productId: {
-            //     type: "string"
-            // },
+            currency: { type: "string" },
             amount: {
                 type: "number"
             },
