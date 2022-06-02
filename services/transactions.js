@@ -12,6 +12,12 @@ const buildTransaction = async (model, charge, context) => {
         status: charge.status,
         user: context._id,
     }).save();
+
+    if (transaction.status == 'succeeded') {
+        let user = db.user.findById(context._id)
+        user.isStorePaymentDone = true
+        await user.save()
+    }
     log.end();
     return transaction;
 };

@@ -112,6 +112,7 @@ const getStoreById = async (id, context) => {
     log.end();
     return store;
 };
+
 const getStoreByCatId = async (id, context) => {
     const log = context.logger.start(`services:stores:getStoreByCatId`);
     if (!id) {
@@ -134,6 +135,19 @@ const myStores = async (id, context) => {
 
     log.end();
     return stores;
+};
+const checkUserHaveStore = async (id, context) => {
+    const log = context.logger.start(`services:stores:checkUserHaveStore`);
+    if (!id) {
+        throw new Error("user id is required");
+    }
+    const store = await db.store.findOne({ user: id })
+    if (!store) {
+        throw new Error("store not found");
+    }
+
+    log.end();
+    return store;
 };
 
 
@@ -304,3 +318,4 @@ exports.getFavStores = getFavStores;
 exports.getAllStores = getAllStores;
 exports.myStores = myStores;
 exports.getStoreByCatId = getStoreByCatId;
+exports.checkUserHaveStore = checkUserHaveStore;

@@ -10,6 +10,7 @@ const user = mongoose.Schema({
     },
     profileImageName: { type: String, },
     dob: { type: String, default: "" },
+    isStorePaymentDone: { type: Boolean, default: false },
     // friends: [{
     //     _id: false,
     //     friendId: { type: mongoose.Schema.ObjectId, ref: 'user', },

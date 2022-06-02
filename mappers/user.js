@@ -30,6 +30,7 @@ exports.toModel = entity => {
         loc: entity.loc,
         fcmToken: entity.fcmToken,
         status: entity.status,
+        isStorePaymentDone: entity.isStorePaymentDone,
     };
     if (entity.gallery && entity.gallery.length > 0) {
         for (let index = 0; index < entity.gallery.length; index++) {

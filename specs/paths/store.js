@@ -314,6 +314,36 @@ module.exports = [{
     }
 },
 {
+    url: "/checkUserHaveStore/{id}",
+    get: {
+        summary: "check User Have Store by user id",
+        description: "check User Have Store by user id",
+        parameters: [
+            // {
+            //     in: "header",
+            //     name: "x-access-token",
+            //     description: "token to access api",
+            //     required: true,
+            //     type: "string"
+            // },
+            {
+                in: "path",
+                type: "string",
+                name: "id",
+                description: "user id",
+                required: true
+            },],
+        responses: {
+            default: {
+                description: "Unexpected error",
+                schema: {
+                    $ref: "#/definitions/Error"
+                }
+            }
+        }
+    }
+},
+{
     url: "/list",
     get: {
         summary: "get stores list",
