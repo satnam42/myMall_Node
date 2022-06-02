@@ -77,6 +77,19 @@ const myStores = async (req, res) => {
         return response.failure(res, err.message);
     }
 };
+const checkUserHaveStore = async (req, res) => {
+    const log = req.context.logger.start(`api:store:checkUserHaveStore`);
+    try {
+        const stores = await service.checkUserHaveStore(req.params.id, req.context);
+        log.end();
+        // return response.data(res, storeMapper.toModel(store));
+        return response.data(res, stores);
+    } catch (err) {
+        log.error(err);
+        log.end();
+        return response.failure(res, err.message);
+    }
+};
 
 //search api
 const search = async (req, res) => {
@@ -171,3 +184,4 @@ exports.list = list;
 exports.myStores = myStores;
 exports.getStoreByCatId = getStoreByCatId;
 exports.getRecentSearch = getRecentSearch;
+exports.checkUserHaveStore = checkUserHaveStore;
