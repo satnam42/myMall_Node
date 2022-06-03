@@ -14,9 +14,11 @@ const buildTransaction = async (model, charge, context) => {
     }).save();
 
     if (transaction.status == 'succeeded') {
-        let user = await db.user.findById(context._id)
-        user.isStorePaymentDone = true
-        await user.save()
+
+
+        let user = await db.user.update(
+            { _id: context._id },
+            { $set: { "isStorePaymentDone": true } });
     }
     log.end();
     return transaction;
