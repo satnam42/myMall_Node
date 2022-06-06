@@ -170,6 +170,22 @@ const deleteItem = async (id, context) => {
     }
 
 };
+const deleteItemsByUserId = async (id, context) => {
+    const log = context.logger.start(`services:carts:deleteItem`);
+    let isCartExists = await db.cart.findById(id);
+    if (isCartExists) {
+        const removeItems = await db.cart.deleteMany({ 'user': id });
+        if (removeItems.deletedCount > 0) {
+            log.end();
+            return "items deleted successfully"
+        } else {
+            return "something went wrong"
+        }
+    } else {
+        log.end();
+        throw new Error("Cart item not found");
+    }
+};
 
 const updateAddress = (model, address, context) => {
     const log = context.logger.start("services:carts:updateAddress");
@@ -258,3 +274,4 @@ exports.addToFav = addToFav;
 exports.getFav = getFav;
 exports.addAddress = addAddress;
 exports.getAddress = getAddress;
+exports.deleteItemsByUserId = deleteItemsByUserId;

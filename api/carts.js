@@ -104,6 +104,19 @@ const deleteItem = async (req, res) => {
         return response.failure(res, err.message);
     }
 };
+const deleteItems = async (req, res) => {
+    const log = req.context.logger.start(`api:products:deleteItem:${req.params.id}`);
+    try {
+        const cartItem = await service.deleteItemsByUserId(req.params.id, req.context);
+        log.end();
+        return response.data(res, cartItem);
+
+    } catch (err) {
+        log.error(err);
+        log.end();
+        return response.failure(res, err.message);
+    }
+};
 
 const addAddress = async (req, res) => {
     const log = req.context.logger.start(`api:carts:addToFav`);
@@ -141,3 +154,4 @@ exports.getFav = getFav
 exports.deleteItem = deleteItem
 exports.addAddress = addAddress
 exports.getAddress = getAddress
+exports.deleteItems = deleteItems

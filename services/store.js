@@ -232,6 +232,7 @@ const imageUpload = async (id, type, files, context) => {
     log.end();
     return 'image uploaded successfully'
 };
+
 const buildFav = async (model, context) => {
     const { userId, storeId } = model;
     const log = context.logger.start(`services:stores:buildFav${model}`);
@@ -242,6 +243,7 @@ const buildFav = async (model, context) => {
     log.end();
     return favourite;
 };
+
 const makeFavOrUnFav = async (model, context) => {
     const log = context.logger.start("services:stores:makeFavOrUnFav");
 
@@ -273,6 +275,7 @@ const getFavStores = async (id, context) => {
     return favourites;
 
 };
+
 const getAllStores = async (context) => {
     const log = context.logger.start(`services:stores:getAllStores`);
     let stores = await db.store.find();

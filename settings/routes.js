@@ -297,6 +297,11 @@ const configure = (app, logger) => {
         permit.context.builder,
         api.carts.deleteItem
     );
+    app.delete(
+        "/api/carts/deleteItemsByUserId/:id",
+        permit.context.builder,
+        api.carts.deleteItems
+    );
 
     app.post(
         "/api/carts/addAddress",

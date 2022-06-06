@@ -145,6 +145,36 @@ module.exports = [{
         }
     }
 },
+{
+    url: "/deleteItemsByUserId/{id}",
+    delete: {
+        summary: "delete cart items",
+        description: "delete cart items by user Id",
+        parameters: [{
+            in: "path",
+            name: "id",
+            description: "user Id",
+            required: true,
+            type: "string"
+        },
+        {
+            in: "header",
+            name: "x-access-token",
+            description: "user token to access api",
+            required: true,
+            type: "string"
+        }
+        ],
+        responses: {
+            default: {
+                description: "Unexpected error",
+                schema: {
+                    $ref: "#/definitions/Error"
+                }
+            }
+        }
+    }
+},
     // {
     //     url: "/addAddress",
     //     post: {
