@@ -72,8 +72,7 @@ const create = async (model, context) => {
 
 const getCarts = async (query, context) => {
     const log = context.logger.start(`services:carts:getCarts`);
-    const products = await db.cart.find({ "user": ObjectId(query.userId), status: { $eq: 'Cart' } }).populate('user').populate('product');
-    // const product = [];
+    const products = await db.cart.find({ "user": ObjectId(query.userId), status: { $eq: 'Cart' } }).populate(['user', 'product', "store"])
     // for (let element of products) {
     //     let pId = element.product._id.toString();
     //     let likesLs = await db.favorite.find({ user: { $eq: query.userId }, product: { $eq: pId } });
