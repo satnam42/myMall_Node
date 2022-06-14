@@ -13,8 +13,8 @@ const app = express();
 var serviceAccount = require("./mymall-acc.json");
 
 const options = {
-  cert: fs.readFileSync('/etc/letsencrypt/live/mymallapp.co/fullchain.pem'),
-  key: fs.readFileSync('/etc/letsencrypt/live/mymallapp.co/privkey.pem')
+  cert: fs.readFileSync('/etc/letsencrypt/live/admin.mymallapp.co/fullchain.pem'),
+  key: fs.readFileSync('/etc/letsencrypt/live/admin.mymallapp.co/privkey.pem')
 };
 
 var server = Https.createServer(options, app);
