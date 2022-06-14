@@ -7,6 +7,7 @@ const logger = require("@open-age/logger")("server");
 const Https = require("https");
 const port = process.env.PORT || appConfig.port || 3000;
 var admin = require("firebase-admin");
+const fs = require('fs');
 const app = express();
 // var server = Http.createServer(app);
 var serviceAccount = require("./mymall-acc.json");
