@@ -3,12 +3,20 @@
 const express = require("express");
 const appConfig = require("config").get("app");
 const logger = require("@open-age/logger")("server");
-const Http = require("http");
+// const Http = require("http");
+const Https = require("https");
 const port = process.env.PORT || appConfig.port || 3000;
 var admin = require("firebase-admin");
 const app = express();
-var server = Http.createServer(app);
+// var server = Http.createServer(app);
 var serviceAccount = require("./mymall-acc.json");
+
+const options = {
+  cert: fs.readFileSync('/etc/letsencrypt/live/mymallapp.co/fullchain.pem'),
+  key: fs.readFileSync('/etc/letsencrypt/live/mymallapp.co/privkey.pem')
+};
+
+var server = Https.createServer(options, app);
 // require('./communication/chat.js').sockets(server);
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
